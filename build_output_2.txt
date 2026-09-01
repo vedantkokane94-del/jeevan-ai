@@ -1,0 +1,52 @@
+﻿
+> jeevan-ai@0.1.0 build D:\My Projects\JEEVAN AI ΓÇô India's Predictive Public Health & Emergency Response Platform for Large Gatherings
+> turbo run build
+
+
+   ΓÇó Packages in scope: @jeevan-ai/types, @jeevan-ai/ui, @jeevan-ai/web
+   ΓÇó Running build in 3 packages
+   ΓÇó Remote caching disabled
+
+@jeevan-ai/web:build: cache miss, executing 064f05c31e236dbd
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: > @jeevan-ai/web@0.1.0 build D:\My Projects\JEEVAN AI ΓÇô India's Predictive Public Health & Emergency Response Platform for Large Gatherings\apps\web
+@jeevan-ai/web:build: > next build
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Γû▓ Next.js 16.3.2 (Turbopack)
+@jeevan-ai/web:build: Γ£ô Running next.config.ts took 17.2s
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:   Creating an optimized production build ...
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: > Build error occurred
+@jeevan-ai/web:build: Error: Turbopack build failed with 1 error:
+@jeevan-ai/web:build: ./packages/ui/src/components/Map.tsx:5:1
+@jeevan-ai/web:build: Error: Module not found: Can't resolve 'react-map-gl'
+@jeevan-ai/web:build:   [90m3 |[0m [36mimport[0m * [36mas[0m [33mReact[0m [36mfrom[0m [32m"react"[0m;
+@jeevan-ai/web:build:   [90m4 |[0m [90m// @ts-ignore[0m
+@jeevan-ai/web:build: [31m[1m>[0m [90m5 |[0m [36mimport[0m [33mMapGL[0m, { [33mMarker[0m, [33mNavigationControl[0m, [33mFullscreenControl[0m } [36mfrom[0m [32m"react-map-gl"[0m;
+@jeevan-ai/web:build:   [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+@jeevan-ai/web:build:   [90m6 |[0m [36mimport[0m [32m"mapbox-gl/dist/mapbox-gl.css"[0m;
+@jeevan-ai/web:build:   [90m7 |[0m
+@jeevan-ai/web:build:   [90m8 |[0m [36mexport[0m [36minterface[0m [33mMapPoint[0m {
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Import trace:
+@jeevan-ai/web:build:   Client Component Browser:
+@jeevan-ai/web:build:     ./packages/ui/src/components/Map.tsx [Client Component Browser]
+@jeevan-ai/web:build:     ./apps/web/src/app/(responder)/responder/dashboard/page.tsx [Client Component Browser]
+@jeevan-ai/web:build:     ./apps/web/src/app/(responder)/responder/dashboard/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: https://nextjs.org/docs/messages/module-not-found
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:     at <unknown> (./packages/ui/src/components/Map.tsx:5:1)
+@jeevan-ai/web:build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+@jeevan-ai/web:build: ΓÇëELIFECYCLEΓÇë Command failed with exit code 1.
+
+ Tasks:    0 successful, 1 total
+Cached:    0 cached, 1 total
+  Time:    41.433s 
+Failed:    @jeevan-ai/web#build
+
+ΓÇëELIFECYCLEΓÇë Command failed with exit code 1.

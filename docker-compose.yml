@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgis/postgis:15-3.3
+    container_name: jeevan_db
+    environment:
+      POSTGRES_USER: jeevan_admin
+      POSTGRES_PASSWORD: jeevan_secure_password
+      POSTGRES_DB: jeevan_ai
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jeevan_admin -d jeevan_ai"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: jeevan_redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: 
+      context: ./services/api
+    container_name: jeevan_api
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./services/api:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://jeevan_admin:jeevan_secure_password@db:5432/jeevan_ai
+      - DATABASE_URL_SYNC=postgresql://jeevan_admin:jeevan_secure_password@db:5432/jeevan_ai
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=test_secret_key_change_in_prod
+      - ENVIRONMENT=development
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

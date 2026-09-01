@@ -1,0 +1,38 @@
+services:
+  # FastAPI Backend Service
+  - type: web
+    name: jeevan-api
+    env: docker
+    dockerContext: .
+    dockerfilePath: ./services/api/Dockerfile
+    region: singapore
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: jeevan-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: jeevan-redis
+          property: connectionString
+      - key: ENVIRONMENT
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+
+  # Redis Pub/Sub Service
+  - type: redis
+    name: jeevan-redis
+    region: singapore
+    plan: free
+    ipAllowList: []
+
+databases:
+  # PostgreSQL Database (Note: Render's managed Postgres doesn't natively support PostGIS on the free tier without custom Docker deployment, but this provisions the standard DB)
+  - name: jeevan-db
+    region: singapore
+    plan: free
+    databaseName: jeevan_ai
+    user: jeevan_admin

@@ -1,0 +1,46 @@
+﻿
+> jeevan-ai@0.1.0 build D:\My Projects\JEEVAN AI ΓÇô India's Predictive Public Health & Emergency Response Platform for Large Gatherings
+> turbo run build
+
+
+   ΓÇó Packages in scope: @jeevan-ai/types, @jeevan-ai/ui, @jeevan-ai/web
+   ΓÇó Running build in 3 packages
+   ΓÇó Remote caching disabled
+
+@jeevan-ai/web:build: cache miss, executing 0d8cb362709d8cd6
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: > @jeevan-ai/web@0.1.0 build D:\My Projects\JEEVAN AI ΓÇô India's Predictive Public Health & Emergency Response Platform for Large Gatherings\apps\web
+@jeevan-ai/web:build: > next build
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Γû▓ Next.js 16.3.2 (Turbopack)
+@jeevan-ai/web:build: Γ£ô Running next.config.ts took 4.2s
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:   Creating an optimized production build ...
+@jeevan-ai/web:build: Γ¿» ERROR: This build is using Turbopack, with a `webpack` config and no `turbopack` config.
+@jeevan-ai/web:build:    This may be a mistake.
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:    As of Next.js 16 Turbopack is enabled by default and
+@jeevan-ai/web:build:    custom webpack configurations may need to be migrated to Turbopack.
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:    NOTE: your `webpack` config may have been added by a configuration plugin.
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:    To configure Turbopack, see https://nextjs.org/docs/app/api-reference/next-config-js/turbopack
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:    TIP: Many applications work fine under Turbopack with no configuration,
+@jeevan-ai/web:build:    if that is the case for you, you can silence this error by passing the
+@jeevan-ai/web:build:    `--turbopack` or `--webpack` flag explicitly or simply setting an 
+@jeevan-ai/web:build:    empty turbopack config in your Next config file (e.g. `turbopack: {}`).
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: > Build error occurred
+@jeevan-ai/web:build: Error: Call retries were exceeded
+@jeevan-ai/web:build:     at ignore-listed frames {
+@jeevan-ai/web:build:   type: 'WorkerError'
+@jeevan-ai/web:build: }
+@jeevan-ai/web:build: ΓÇëELIFECYCLEΓÇë Command failed with exit code 1.
+
+ Tasks:    0 successful, 1 total
+Cached:    0 cached, 1 total
+  Time:    11.938s 
+Failed:    @jeevan-ai/web#build
+
+ΓÇëELIFECYCLEΓÇë Command failed with exit code 1.

@@ -1,0 +1,35 @@
+﻿
+> jeevan-ai@0.1.0 typecheck D:\My Projects\JEEVAN AI ΓÇô India's Predictive Public Health & Emergency Response Platform for Large Gatherings
+> turbo run typecheck
+
+
+   ΓÇó Packages in scope: @jeevan-ai/types, @jeevan-ai/ui, @jeevan-ai/web
+   ΓÇó Running typecheck in 3 packages
+   ΓÇó Remote caching disabled
+
+@jeevan-ai/ui:typecheck: cache miss, executing 9d4f410578d4ed8f
+@jeevan-ai/types:typecheck: cache miss, executing 480c2d4276701543
+@jeevan-ai/web:typecheck: cache miss, executing 69c033c1a9e0fa8e
+@jeevan-ai/ui:typecheck: 
+@jeevan-ai/ui:typecheck: > @jeevan-ai/ui@0.1.0 typecheck D:\My Projects\JEEVAN AI ΓÇô India's Predictive Public Health & Emergency Response Platform for Large Gatherings\packages\ui
+@jeevan-ai/ui:typecheck: > tsc --noEmit
+@jeevan-ai/ui:typecheck: 
+@jeevan-ai/types:typecheck: 
+@jeevan-ai/types:typecheck: > @jeevan-ai/types@0.1.0 typecheck D:\My Projects\JEEVAN AI ΓÇô India's Predictive Public Health & Emergency Response Platform for Large Gatherings\packages\types
+@jeevan-ai/types:typecheck: > tsc --noEmit
+@jeevan-ai/types:typecheck: 
+@jeevan-ai/web:typecheck: 
+@jeevan-ai/web:typecheck: > @jeevan-ai/web@0.1.0 typecheck D:\My Projects\JEEVAN AI ΓÇô India's Predictive Public Health & Emergency Response Platform for Large Gatherings\apps\web
+@jeevan-ai/web:typecheck: > tsc --noEmit
+@jeevan-ai/web:typecheck: 
+@jeevan-ai/ui:typecheck: src/components/Map.tsx(4,69): error TS2307: Cannot find module 'react-map-gl' or its corresponding type declarations.
+@jeevan-ai/ui:typecheck: src/components/Map.tsx(33,23): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+@jeevan-ai/ui:typecheck: src/components/Map.tsx(85,23): error TS7006: Parameter 'e' implicitly has an 'any' type.
+@jeevan-ai/ui:typecheck: ΓÇëELIFECYCLEΓÇë Command failed with exit code 2.
+
+ Tasks:    1 successful, 3 total
+Cached:    0 cached, 3 total
+  Time:    10.152s 
+Failed:    @jeevan-ai/ui#typecheck
+
+ΓÇëELIFECYCLEΓÇë Command failed with exit code 2.

@@ -1,0 +1,158 @@
+﻿
+> jeevan-ai@0.1.0 build D:\My Projects\JEEVAN AI ΓÇô India's Predictive Public Health & Emergency Response Platform for Large Gatherings
+> turbo run build
+
+
+   ΓÇó Packages in scope: @jeevan-ai/types, @jeevan-ai/ui, @jeevan-ai/web
+   ΓÇó Running build in 3 packages
+   ΓÇó Remote caching disabled
+
+@jeevan-ai/web:build: cache miss, executing b71f781d7730e045
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: > @jeevan-ai/web@0.1.0 build D:\My Projects\JEEVAN AI ΓÇô India's Predictive Public Health & Emergency Response Platform for Large Gatherings\apps\web
+@jeevan-ai/web:build: > next build
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Γû▓ Next.js 16.3.2 (Turbopack)
+@jeevan-ai/web:build: Γ£ô Running next.config.ts took 5.0s
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:   Creating an optimized production build ...
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: > Build error occurred
+@jeevan-ai/web:build: Error: Turbopack build failed with 6 errors:
+@jeevan-ai/web:build: ./apps/web/src/app/(command)/command/dashboard/page.tsx
+@jeevan-ai/web:build: Error: Module not found: Can't resolve '@/components/Map'
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Import traces:
+@jeevan-ai/web:build:   Client Component Browser:
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/dashboard/page.tsx [Client Component Browser]
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/dashboard/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:   Client Component SSR:
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/dashboard/page.tsx [Client Component SSR]
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/dashboard/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: https://nextjs.org/docs/messages/module-not-found
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: ./apps/web/src/app/(command)/command/dashboard/page.tsx:14:34
+@jeevan-ai/web:build: Error: Module not found: Can't resolve '@/components/Map'
+@jeevan-ai/web:build:   [90m12 |[0m ...[36mrom[0m [32m"lucide-react"[0m;
+@jeevan-ai/web:build:   [90m13 |[0m ...
+@jeevan-ai/web:build: [31m[1m>[0m [90m14 |[0m ...[36mst[0m [33mDynamicMap[0m = dynamic(() => [36mimport[0m([32m"@/components/Map"[0m).then((mod) => mod.[33mMap[0m), {
+@jeevan-ai/web:build:   [90m   |[0m                                  [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+@jeevan-ai/web:build:   [90m15 |[0m ...sr: [36mfalse[0m,
+@jeevan-ai/web:build:   [90m16 |[0m ...oading: () => <div className=[32m"w-full h-full flex items-center justify-center bg-ink-900...[0m
+@jeevan-ai/web:build:   [90m17 |[0m ...
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Import traces:
+@jeevan-ai/web:build:   Client Component Browser:
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/dashboard/page.tsx [Client Component Browser]
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/dashboard/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:   Client Component SSR:
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/dashboard/page.tsx [Client Component SSR]
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/dashboard/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: https://nextjs.org/docs/messages/module-not-found
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: ./apps/web/src/app/(command)/command/digital-twin/page.tsx
+@jeevan-ai/web:build: Error: Module not found: Can't resolve '@/components/Map'
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Import traces:
+@jeevan-ai/web:build:   Client Component Browser:
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/digital-twin/page.tsx [Client Component Browser]
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/digital-twin/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:   Client Component SSR:
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/digital-twin/page.tsx [Client Component SSR]
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/digital-twin/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: https://nextjs.org/docs/messages/module-not-found
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: ./apps/web/src/app/(command)/command/digital-twin/page.tsx:7:34
+@jeevan-ai/web:build: Error: Module not found: Can't resolve '@/components/Map'
+@jeevan-ai/web:build:   [90m 5 |[0m ...[36mort[0m { [33mPlay[0m, [33mRotateCcw[0m, [33mAlertTriangle[0m, [33mThermometerSun[0m, [33mUsers[0m, [33mMap[0m [36mas[0m [33mMapIcon[0m, [33mBarChart3[0m,.[33m..[0m
+@jeevan-ai/web:build:   [90m 6 |[0m ...
+@jeevan-ai/web:build: [31m[1m>[0m [90m 7 |[0m ...[36mst[0m [33mDynamicMap[0m = dynamic(() => [36mimport[0m([32m"@/components/Map"[0m).then((mod) => mod.[33mMap[0m), {
+@jeevan-ai/web:build:   [90m   |[0m                                  [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+@jeevan-ai/web:build:   [90m 8 |[0m ...sr: [36mfalse[0m,
+@jeevan-ai/web:build:   [90m 9 |[0m ...oading: () => <div className=[32m"w-full h-full flex items-center justify-center bg-ink-900...[0m
+@jeevan-ai/web:build:   [90m10 |[0m ...
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Import traces:
+@jeevan-ai/web:build:   Client Component Browser:
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/digital-twin/page.tsx [Client Component Browser]
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/digital-twin/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:   Client Component SSR:
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/digital-twin/page.tsx [Client Component SSR]
+@jeevan-ai/web:build:     ./apps/web/src/app/(command)/command/digital-twin/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: https://nextjs.org/docs/messages/module-not-found
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: ./apps/web/src/app/(responder)/responder/dashboard/page.tsx
+@jeevan-ai/web:build: Error: Module not found: Can't resolve '@/components/Map'
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Import traces:
+@jeevan-ai/web:build:   Client Component Browser:
+@jeevan-ai/web:build:     ./apps/web/src/app/(responder)/responder/dashboard/page.tsx [Client Component Browser]
+@jeevan-ai/web:build:     ./apps/web/src/app/(responder)/responder/dashboard/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:   Client Component SSR:
+@jeevan-ai/web:build:     ./apps/web/src/app/(responder)/responder/dashboard/page.tsx [Client Component SSR]
+@jeevan-ai/web:build:     ./apps/web/src/app/(responder)/responder/dashboard/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: https://nextjs.org/docs/messages/module-not-found
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: ./apps/web/src/app/(responder)/responder/dashboard/page.tsx:10:34
+@jeevan-ai/web:build: Error: Module not found: Can't resolve '@/components/Map'
+@jeevan-ai/web:build:   [90m 8 |[0m ...
+@jeevan-ai/web:build:   [90m 9 |[0m ...[90mDynamically import the Map component to avoid SSR issues with Leaflet[0m
+@jeevan-ai/web:build: [31m[1m>[0m [90m10 |[0m ...[36mst[0m [33mDynamicMap[0m = dynamic(() => [36mimport[0m([32m"@/components/Map"[0m).then((mod) => mod.[33mMap[0m), {
+@jeevan-ai/web:build:   [90m   |[0m                                  [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+@jeevan-ai/web:build:   [90m11 |[0m ...sr: [36mfalse[0m,
+@jeevan-ai/web:build:   [90m12 |[0m ...oading: () => <div className=[32m"w-full h-full flex items-center justify-center bg-paper-2...[0m
+@jeevan-ai/web:build:   [90m13 |[0m ...
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Import traces:
+@jeevan-ai/web:build:   Client Component Browser:
+@jeevan-ai/web:build:     ./apps/web/src/app/(responder)/responder/dashboard/page.tsx [Client Component Browser]
+@jeevan-ai/web:build:     ./apps/web/src/app/(responder)/responder/dashboard/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:   Client Component SSR:
+@jeevan-ai/web:build:     ./apps/web/src/app/(responder)/responder/dashboard/page.tsx [Client Component SSR]
+@jeevan-ai/web:build:     ./apps/web/src/app/(responder)/responder/dashboard/page.tsx [Server Component]
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: https://nextjs.org/docs/messages/module-not-found
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+@jeevan-ai/web:build:     at <unknown> (./apps/web/src/app/(command)/command/dashboard/page.tsx:14:34)
+@jeevan-ai/web:build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+@jeevan-ai/web:build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+@jeevan-ai/web:build:     at <unknown> (./apps/web/src/app/(command)/command/digital-twin/page.tsx:7:34)
+@jeevan-ai/web:build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+@jeevan-ai/web:build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+@jeevan-ai/web:build:     at <unknown> (./apps/web/src/app/(responder)/responder/dashboard/page.tsx:10:34)
+@jeevan-ai/web:build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+@jeevan-ai/web:build: ΓÇëELIFECYCLEΓÇë Command failed with exit code 1.
+
+ Tasks:    0 successful, 1 total
+Cached:    0 cached, 1 total
+  Time:    22.38s 
+Failed:    @jeevan-ai/web#build
+
+ΓÇëELIFECYCLEΓÇë Command failed with exit code 1.

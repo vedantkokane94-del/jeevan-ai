@@ -1,0 +1,57 @@
+﻿
+> jeevan-ai@0.1.0 build D:\My Projects\JEEVAN AI ΓÇô India's Predictive Public Health & Emergency Response Platform for Large Gatherings
+> turbo run build
+
+
+   ΓÇó Packages in scope: @jeevan-ai/types, @jeevan-ai/ui, @jeevan-ai/web
+   ΓÇó Running build in 3 packages
+   ΓÇó Remote caching disabled
+
+@jeevan-ai/web:build: cache miss, executing e56fb1ed2ab392b5
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: > @jeevan-ai/web@0.1.0 build D:\My Projects\JEEVAN AI ΓÇô India's Predictive Public Health & Emergency Response Platform for Large Gatherings\apps\web
+@jeevan-ai/web:build: > next build
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Γû▓ Next.js 16.3.2 (Turbopack)
+@jeevan-ai/web:build: Γ£ô Running next.config.ts took 4.2s
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build:   Creating an optimized production build ...
+@jeevan-ai/web:build: Γ£ô Compiled successfully in 11.2s
+@jeevan-ai/web:build:   Running TypeScript ...
+@jeevan-ai/web:build:   Finished TypeScript in 11.0s ...
+@jeevan-ai/web:build:   Collecting page data using 11 workers ...
+@jeevan-ai/web:build:   Generating static pages using 11 workers (0/20) ...
+@jeevan-ai/web:build:   Generating static pages using 11 workers (5/20) 
+@jeevan-ai/web:build:   Generating static pages using 11 workers (10/20) 
+@jeevan-ai/web:build:   Generating static pages using 11 workers (15/20) 
+@jeevan-ai/web:build: Γ£ô Generating static pages using 11 workers (20/20) in 1989ms
+@jeevan-ai/web:build:   Finalizing page optimization ...
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Route (app)
+@jeevan-ai/web:build: Γöî Γùï /
+@jeevan-ai/web:build: Γö£ Γùï /_not-found
+@jeevan-ai/web:build: Γö£ Γùï /admin/users
+@jeevan-ai/web:build: Γö£ Γùï /blood
+@jeevan-ai/web:build: Γö£ Γùï /command/alerts
+@jeevan-ai/web:build: Γö£ Γùï /command/analytics
+@jeevan-ai/web:build: Γö£ Γùï /command/dashboard
+@jeevan-ai/web:build: Γö£ Γùï /command/digital-twin
+@jeevan-ai/web:build: Γö£ Γùï /emergency
+@jeevan-ai/web:build: Γö£ Γùï /family
+@jeevan-ai/web:build: Γö£ Γùï /first-aid
+@jeevan-ai/web:build: Γö£ Γùï /hospitals
+@jeevan-ai/web:build: Γö£ Γùï /login
+@jeevan-ai/web:build: Γö£ Γùï /responder/dashboard
+@jeevan-ai/web:build: Γö£ Γùï /safety-detect
+@jeevan-ai/web:build: Γö£ Γùï /sos
+@jeevan-ai/web:build: Γö£ Γùï /voice
+@jeevan-ai/web:build: Γöö Γùï /women-safety
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: 
+@jeevan-ai/web:build: Γùï  (Static)  prerendered as static content
+@jeevan-ai/web:build: 
+
+ Tasks:    1 successful, 1 total
+Cached:    0 cached, 1 total
+  Time:    44.238s 
+
