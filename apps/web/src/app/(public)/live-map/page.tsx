@@ -168,21 +168,22 @@ export default function LiveMapPage() {
           onPointClick={(id) => setSelectedZone(id)}
         />
 
-        {/* Live Indicator */}
-        <div className="absolute top-3 left-3 z-10 px-3 py-1.5 rounded-lg bg-ink-950/80 backdrop-blur border border-ink-800 text-xs font-mono text-white flex items-center gap-2">
-          <span className="live-dot" style={{ width: 6, height: 6 }} />
-          LIVE • Nashik Kumbh
-        </div>
+        {/* Bottom Status Bar Badges (Shifted to bottom to avoid blocking top 3D map style controls) */}
+        <div className="absolute bottom-14 left-4 right-4 z-10 flex items-center justify-between pointer-events-none">
+          <div className="px-3 py-1.5 rounded-lg bg-ink-950/90 backdrop-blur border border-ink-800 text-xs font-mono text-white flex items-center gap-2 pointer-events-auto shadow-lg">
+            <span className="live-dot" style={{ width: 6, height: 6 }} />
+            LIVE • Nashik Kumbh
+          </div>
 
-        {/* Zone count badge */}
-        <div className="absolute top-3 right-3 z-10 px-3 py-1.5 rounded-lg bg-ink-950/80 backdrop-blur border border-ink-800 text-xs font-mono flex items-center gap-2">
-          <span className="live-dot-alert" style={{ width: 6, height: 6 }} />
-          <span className="text-alert-400 font-bold">{ZONE_POINTS.filter(z => z.severity === "CRITICAL" || z.severity === "HIGH").length}</span>
-          <span className="text-ink-400">High Risk Zones</span>
+          <div className="px-3 py-1.5 rounded-lg bg-ink-950/90 backdrop-blur border border-ink-800 text-xs font-mono flex items-center gap-2 pointer-events-auto shadow-lg">
+            <span className="live-dot-alert" style={{ width: 6, height: 6 }} />
+            <span className="text-alert-400 font-bold">{ZONE_POINTS.filter(z => z.severity === "CRITICAL" || z.severity === "HIGH").length}</span>
+            <span className="text-ink-400">High Risk Zones</span>
+          </div>
         </div>
 
         {/* Bottom Legend */}
-        <div className="absolute bottom-4 left-4 right-4 z-10 flex gap-2 overflow-x-auto no-scrollbar">
+        <div className="absolute bottom-3 left-4 right-4 z-10 flex gap-2 overflow-x-auto no-scrollbar">
           {enabledLayers.map(layer => (
             <div key={layer.id} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-ink-950/80 backdrop-blur border border-ink-800 text-[10px] text-ink-300 font-medium shrink-0">
               <div className={`w-2 h-2 rounded-full ${layer.color}`} />
