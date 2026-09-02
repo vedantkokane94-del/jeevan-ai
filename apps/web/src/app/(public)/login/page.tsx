@@ -59,6 +59,7 @@ export default function LoginPage() {
       // If demo login backend API is in simulation mode, redirect directly based on role
       if (role === "RESPONDER") router.push("/responder/dashboard");
       else if (role === "COMMAND") router.push("/command/dashboard");
+      else if (role === "ADMIN") router.push("/admin/users");
       else router.push("/emergency");
     }
   };
@@ -160,18 +161,24 @@ export default function LoginPage() {
             <p className="text-[10px] text-ink-400 uppercase tracking-widest font-mono text-center font-bold">
               Quick One-Tap Sign In with Live GPS:
             </p>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-3 gap-1.5">
               <button
                 onClick={() => handleDemoLogin("responder@jeevan.gov.in", "RESPONDER")}
-                className="p-2.5 rounded-xl bg-paper-100 border border-paper-300 hover:border-primary-500 text-xs font-bold text-ink-800 hover:text-primary-600 transition-all text-center"
+                className="p-2 rounded-xl bg-paper-100 border border-paper-300 hover:border-primary-500 text-[11px] font-bold text-ink-800 hover:text-primary-600 transition-all text-center"
               >
-                🚑 Ambulance Responder
+                🚑 Responder
               </button>
               <button
                 onClick={() => handleDemoLogin("command@jeevan.gov.in", "COMMAND")}
-                className="p-2.5 rounded-xl bg-paper-100 border border-paper-300 hover:border-primary-500 text-xs font-bold text-ink-800 hover:text-primary-600 transition-all text-center"
+                className="p-2 rounded-xl bg-paper-100 border border-paper-300 hover:border-primary-500 text-[11px] font-bold text-ink-800 hover:text-primary-600 transition-all text-center"
               >
-                🏛️ Command Officer
+                🏛️ Command
+              </button>
+              <button
+                onClick={() => handleDemoLogin("admin@jeevan.gov.in", "ADMIN")}
+                className="p-2 rounded-xl bg-paper-100 border border-paper-300 hover:border-primary-500 text-[11px] font-bold text-ink-800 hover:text-primary-600 transition-all text-center"
+              >
+                👑 Admin
               </button>
             </div>
           </div>
