@@ -162,10 +162,9 @@ export default function CommandCenterDashboard() {
           </div>
         </div>
 
-        {/* Center Column: Global Tactical Map */}
-        <div className="lg:col-span-6 flex flex-col relative bg-ink-900">
-          <div className="absolute inset-0 grayscale invert contrast-150 hue-rotate-180 brightness-[0.8] saturate-50">
-            <DynamicMap center={defaultCenter} zoom={14} className="h-full w-full" />
+        <div className="lg:col-span-6 flex flex-col relative bg-ink-900 overflow-hidden">
+          <div className="absolute inset-0">
+            <DynamicMap center={defaultCenter} zoom={14} theme="satellite" showAmbulanceRoute={true} className="h-full w-full" />
           </div>
           
           {/* Map Overlays */}

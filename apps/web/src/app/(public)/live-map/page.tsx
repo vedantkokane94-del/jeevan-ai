@@ -136,6 +136,8 @@ export default function LiveMapPage() {
         <DynamicMap
           center={[20.0050, 73.7900]}
           zoom={14}
+          theme="satellite"
+          showAmbulanceRoute={true}
           points={getActivePoints()}
           className="h-full w-full"
           onPointClick={(id) => setSelectedZone(id)}

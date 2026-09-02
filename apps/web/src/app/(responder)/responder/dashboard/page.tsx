@@ -196,7 +196,7 @@ export default function ResponderDashboard() {
 
         {/* Right Panel: Map */}
         <section className={`flex-1 h-full relative ${activeTab === "queue" ? "hidden md:block" : "block"}`}>
-          <DynamicMap center={defaultCenter} points={mapPoints} zoom={13} />
+          <DynamicMap center={defaultCenter} points={mapPoints} zoom={13} theme="satellite" showAmbulanceRoute={true} />
           {/* Overlay controls */}
           <div className="absolute top-4 right-4 z-10 space-y-2">
             <button className="w-10 h-10 rounded-xl bg-white shadow-lg flex items-center justify-center text-ink-600 hover:text-primary-600 transition-colors">
