@@ -63,7 +63,10 @@ export default function CommandCenterDashboard() {
       <header className="h-16 bg-ink-950 border-b border-ink-800 flex items-center justify-between px-6 shrink-0 z-10 shadow-lg">
         <div className="flex items-center gap-6">
           <h1 className="font-display font-bold text-white tracking-widest text-lg flex items-center gap-2">
-            <Shield className="w-5 h-5 text-primary-500" /> MISSION CONTROL
+            <div className="w-7 h-7 rounded bg-white flex items-center justify-center overflow-hidden p-0.5 shrink-0">
+              <img src="/logo.png" alt="JEEVAN AI" className="w-full h-full object-contain" />
+            </div>
+            MISSION CONTROL
           </h1>
           <div className="h-6 w-px bg-ink-800" />
           <div className="flex items-center gap-2 text-[10px] font-mono">

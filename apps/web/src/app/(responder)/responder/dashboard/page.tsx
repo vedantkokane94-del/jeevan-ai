@@ -64,8 +64,8 @@ export default function ResponderDashboard() {
       {/* Top Navbar */}
       <header className="glass z-30 px-4 py-3 flex items-center justify-between border-b border-surface-border">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
-            <Shield className="w-4 h-4 text-white" />
+          <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm overflow-hidden p-0.5 border border-surface-border">
+            <img src="/logo.png" alt="JEEVAN AI" className="w-full h-full object-contain" />
           </div>
           <div>
             <h1 className="text-sm font-display font-bold text-ink-900 leading-tight">Responder Hub</h1>

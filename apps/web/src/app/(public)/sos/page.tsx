@@ -292,7 +292,9 @@ export default function SOSPage() {
           {isComplete ? <CheckCircle2 className="w-5 h-5" /> : <Loader2 className="w-5 h-5 animate-spin" />}
           <span className="font-display font-bold text-sm">{phaseLabel}</span>
         </div>
-        <Shield className="w-5 h-5 opacity-60" />
+        <div className="w-6 h-6 rounded bg-white/20 flex items-center justify-center overflow-hidden p-0.5">
+          <img src="/logo.png" alt="JEEVAN AI" className="w-full h-full object-contain" />
+        </div>
       </header>
 
       {/* Step Progress Bar */}

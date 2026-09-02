@@ -161,7 +161,12 @@ export default function VoiceAssistant() {
         <Link href="/emergency" className="w-9 h-9 rounded-xl bg-ink-900 border border-ink-800 flex items-center justify-center">
           <ArrowLeft className="w-5 h-5 text-ink-300" />
         </Link>
-        <span className="font-display font-bold text-white text-sm">AI Voice Assistant</span>
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded bg-white flex items-center justify-center p-0.5 overflow-hidden">
+            <img src="/logo.png" alt="JEEVAN AI" className="w-full h-full object-contain" />
+          </div>
+          <span className="font-display font-bold text-white text-sm">AI Voice Assistant</span>
+        </div>
         
         {/* Language Picker */}
         <div className="relative group">

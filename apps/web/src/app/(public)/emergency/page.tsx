@@ -112,8 +112,8 @@ export default function EmergencyHub() {
         {/* Top Row: Branding + Network */}
         <div className="px-4 py-2.5 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center shadow-sm">
-              <Shield className="w-4 h-4 text-white" />
+            <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm overflow-hidden p-0.5 border border-paper-300">
+              <img src="/logo.png" alt="JEEVAN AI" className="w-full h-full object-contain" />
             </div>
             <div>
               <span className="font-display font-bold text-ink-900 text-sm leading-none">JEEVAN <span className="text-primary-600">AI</span></span>

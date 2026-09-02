@@ -90,8 +90,8 @@ function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
-                <Shield className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center p-0.5 overflow-hidden">
+                <img src="/logo.png" alt="JEEVAN AI" className="w-full h-full object-contain" />
               </div>
               <span className="font-display font-bold text-white">JEEVAN AI</span>
             </div>
