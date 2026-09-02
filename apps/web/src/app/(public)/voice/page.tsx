@@ -160,8 +160,8 @@ export default function VoiceAssistant() {
     speak(msg, language);
 
     setTimeout(() => {
-      router.push("/sos");
-    }, 2000);
+      router.push("/live-map");
+    }, 1500);
   };
 
   const toggleListening = () => {
