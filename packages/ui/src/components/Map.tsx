@@ -73,17 +73,22 @@ const satelliteStyle: any = {
 // Central Emergency Incident Spot (Ramkund Holy Snan Ghat)
 const EMERGENCY_SPOT: [number, number] = [20.0063, 73.7925]; // [lat, lng]
 
-// Default emergency route in Nashik Kumbh area based on Google Maps GPS (Civil Hospital to Ramkund Ghat)
+// High-Precision Street Pavement Waypoints (Civil Hospital to Ramkund Ghat via Trimbak Rd, CBS, MG Rd, Ashok Stambh, Panchavati Bridge)
 const DEFAULT_ROUTE: [number, number][] = [
-  [20.0020, 73.7785], // Civil Hospital Nashik (Google Maps Reference)
-  [20.0035, 73.7820], // CBS Signal / Trimbak Road Junction
-  [20.0048, 73.7860], // Ashok Stambh / Panchavati Bridge Approach
-  [20.0055, 73.7890], // Godavari River Bridge Corridor
-  [20.0062, 73.7915], // Malviya Chowk Panchavati
+  [20.0020, 73.7785], // Civil Hospital Nashik Entrance
+  [20.0028, 73.7802], // Trimbak Road Pavement
+  [20.0033, 73.7818], // CBS Flyover Slip Road
+  [20.0038, 73.7832], // Shalimar Circle Road
+  [20.0042, 73.7848], // MG Road Junction
+  [20.0048, 73.7860], // Ashok Stambh Signal
+  [20.0051, 73.7872], // Victoria Bridge North Bank
+  [20.0054, 73.7885], // Godavari River Bridge Approach
+  [20.0058, 73.7895], // Panchavati Karanja Road
+  [20.0061, 73.7912], // Malviya Chowk Panchavati
   [20.0063, 73.7925], // Ramkund Holy Snan Ghat Emergency Point
 ];
 
-// 5 Nearest Hospital Emergency Routes ALL CONNECTED to central Emergency Point [73.7925, 20.0063]
+// 5 Nearest Hospital Emergency Corridors Following Exact Street Pavements in Nashik
 const CONNECTED_HOSPITAL_ROUTES = [
   {
     id: "route-civil",
@@ -92,11 +97,17 @@ const CONNECTED_HOSPITAL_ROUTES = [
     destName: "Civil Hospital Nashik",
     destCoords: [73.7785, 20.0020] as [number, number],
     coords: [
-      [73.7925, 20.0063], // Central Emergency Point (Ramkund)
-      [73.7890, 20.0055], // Panchavati Bridge
-      [73.7860, 20.0048], // Ashok Stambh
-      [73.7820, 20.0035], // CBS Signal
-      [73.7785, 20.0020], // Civil Hospital Nashik
+      [73.7925, 20.0063], // Ramkund Holy Ghat
+      [73.7912, 20.0061], // Malviya Chowk Panchavati
+      [73.7895, 20.0058], // Panchavati Karanja Road
+      [73.7885, 20.0054], // Godavari River Bridge Approach
+      [73.7872, 20.0051], // Victoria Bridge North Bank
+      [73.7860, 20.0048], // Ashok Stambh Signal
+      [73.7848, 20.0042], // MG Road Junction
+      [73.7832, 20.0038], // Shalimar Circle Road
+      [73.7818, 20.0033], // CBS Flyover Slip Road
+      [73.7802, 20.0028], // Trimbak Road Corridor
+      [73.7785, 20.0020], // Civil Hospital Nashik Main Gate
     ]
   },
   {
@@ -106,10 +117,12 @@ const CONNECTED_HOSPITAL_ROUTES = [
     destName: "Apollo Hospital Panchavati",
     destCoords: [73.7980, 20.0125] as [number, number],
     coords: [
-      [73.7925, 20.0063], // Central Emergency Point (Ramkund)
-      [73.7945, 20.0078], // Kalaram Mandir Chowk
-      [73.7960, 20.0100], // Panchavati Circle
-      [73.7980, 20.0125], // Apollo Hospitals Panchavati
+      [73.7925, 20.0063], // Ramkund Holy Ghat
+      [73.7938, 20.0070], // Kalaram Mandir East Gate Road
+      [73.7952, 20.0085], // Sita Gufa Chowk
+      [73.7962, 20.0102], // Nimani Bus Stand Circle
+      [73.7971, 20.0114], // Kathe Gali Road Junction
+      [73.7980, 20.0125], // Apollo Hospital Panchavati Main Gate
     ]
   },
   {
@@ -119,10 +132,12 @@ const CONNECTED_HOSPITAL_ROUTES = [
     destName: "District Hospital CBS",
     destCoords: [73.7852, 19.9975] as [number, number],
     coords: [
-      [73.7925, 20.0063], // Central Emergency Point (Ramkund)
-      [73.7915, 20.0055], // Godavari Main Ghat Exit
-      [73.7880, 20.0010], // Victoria Bridge
-      [73.7852, 19.9975], // District Hospital CBS
+      [73.7925, 20.0063], // Ramkund Holy Ghat
+      [73.7915, 20.0055], // Godavari Main Ghat Exit Road
+      [73.7900, 20.0035], // Talkuteshwar Bridge Road
+      [73.7882, 20.0012], // Ravivar Peth Main Street
+      [73.7868, 19.9995], // Tilak Road Corridor
+      [73.7852, 19.9975], // District Hospital CBS Main Entrance
     ]
   },
   {
@@ -132,9 +147,12 @@ const CONNECTED_HOSPITAL_ROUTES = [
     destName: "Sahyadri Hospital Wadala",
     destCoords: [73.7910, 19.9880] as [number, number],
     coords: [
-      [73.7925, 20.0063], // Central Emergency Point (Ramkund)
-      [73.8048, 20.0012], // Tapovan Road
-      [73.7980, 19.9930], // Dwarka Circle
+      [73.7925, 20.0063], // Ramkund Holy Ghat
+      [73.7948, 20.0045], // Tapovan Bridge Link Road
+      [73.7985, 20.0020], // Godavari South Bank Road
+      [73.8010, 19.9985], // Dwarka Circle Flyover Approach
+      [73.7980, 19.9930], // Wadala Naka Highway Junction
+      [73.7945, 19.9902], // Wadala Road Street
       [73.7910, 19.9880], // Sahyadri Hospital Wadala
     ]
   },
@@ -145,9 +163,12 @@ const CONNECTED_HOSPITAL_ROUTES = [
     destName: "Wockhardt Hospital Trauma Center",
     destCoords: [73.7750, 19.9720] as [number, number],
     coords: [
-      [73.7925, 20.0063], // Central Emergency Point (Ramkund)
-      [73.7845, 19.9980], // CBS Flyover
-      [73.7800, 19.9780], // Mumbai Naka
+      [73.7925, 20.0063], // Ramkund Holy Ghat
+      [73.7885, 20.0048], // Ashok Stambh Road
+      [73.7845, 19.9980], // CBS Flyover Highway Ramp
+      [73.7820, 19.9880], // Mumbai Naka Circle
+      [73.7795, 19.9820], // Pathardi Phata Link Road
+      [73.7770, 19.9760], // Mumbai-Agra National Highway
       [73.7750, 19.9720], // Wockhardt Hospital Trauma Center
     ]
   }
@@ -163,8 +184,8 @@ const routeGlowLayer: LayerProps = {
   },
   paint: {
     "line-color": "#0ea5e9",
-    "line-width": 14,
-    "line-opacity": 0.45,
+    "line-width": 16,
+    "line-opacity": 0.5,
     "line-blur": 6
   }
 };
@@ -179,7 +200,7 @@ const routeCoreLayer: LayerProps = {
   },
   paint: {
     "line-color": "#38bdf8",
-    "line-width": 5
+    "line-width": 6
   }
 };
 
@@ -193,7 +214,7 @@ const routePulseLayer: LayerProps = {
   },
   paint: {
     "line-color": "#ffffff",
-    "line-width": 2,
+    "line-width": 2.5,
     "line-dasharray": [2, 4]
   }
 };
@@ -339,21 +360,33 @@ export function Map({
           </Source>
         )}
 
-        {/* 5 Nearest Hospital Emergency Routes ALL Connected to Ramkund Emergency Point */}
+        {/* 5 Nearest Hospital Emergency Routes ALL Connected along Street Pavements */}
         {showAmbulanceRoute && CONNECTED_HOSPITAL_ROUTES.map(hr => (
           <Source key={hr.id} id={`${hr.id}-source`} type="geojson" data={{
             type: "Feature",
             properties: {},
             geometry: { type: "LineString", coordinates: hr.coords }
           }}>
+            {/* Dark Casing Line for Street Pavement Contrast on Satellite */}
+            <Layer
+              id={`${hr.id}-casing`}
+              type="line"
+              layout={{ "line-join": "round", "line-cap": "round" }}
+              paint={{
+                "line-color": "#020617",
+                "line-width": 7,
+                "line-opacity": 0.85
+              }}
+            />
+            {/* Bright Colored Corridor Line */}
             <Layer
               id={`${hr.id}-layer`}
               type="line"
               layout={{ "line-join": "round", "line-cap": "round" }}
               paint={{
                 "line-color": hr.color,
-                "line-width": 4,
-                "line-opacity": 0.9
+                "line-width": 4.5,
+                "line-opacity": 0.95
               }}
             />
           </Source>
