@@ -215,7 +215,7 @@ export function Map({
   heatmapData = null,
   showAmbulanceRoute = true,
   routePath = DEFAULT_ROUTE,
-  ambulanceTitle = "AMB-08 (Live)",
+  ambulanceTitle = "AMB-08",
   destinationTitle = "Ramkund Emergency Point",
 }: MapProps) {
   const [activeTheme, setActiveTheme] = React.useState<"satellite" | "dark" | "light">(initialTheme);
@@ -233,6 +233,16 @@ export function Map({
   const [progress, setProgress] = React.useState(0);
   const [ambulancePos, setAmbulancePos] = React.useState<[number, number]>(activeRoute[0]);
   const [heading, setHeading] = React.useState(0);
+  const [currentSpeed, setCurrentSpeed] = React.useState(28);
+
+  // Dynamic Live Speed Counter (fluctuates realistic speed between 24 - 36 km/h)
+  React.useEffect(() => {
+    if (!showAmbulanceRoute) return;
+    const speedInterval = setInterval(() => {
+      setCurrentSpeed(Math.floor(24 + Math.random() * 12));
+    }, 1500);
+    return () => clearInterval(speedInterval);
+  }, [showAmbulanceRoute]);
 
   // Animation Loop for Moving Ambulance along Shortest Route (Slower & Smoother)
   React.useEffect(() => {
@@ -388,43 +398,46 @@ export function Map({
           </Marker>
         ))}
 
-        {/* LIVE MOVING AMBULANCE MARKER (ATTRACTIVE & STRAIGHT) */}
+        {/* LIVE MOVING AMBULANCE MARKER (HIGHLY VISIBLE WITH LIVE SPEED) */}
         {showAmbulanceRoute && (
           <Marker longitude={ambulancePos[1]} latitude={ambulancePos[0]} anchor="center">
-            <div className="relative group flex flex-col items-center cursor-pointer">
-              {/* Floating Live Badge & Speed */}
-              <div className="absolute -top-11 whitespace-nowrap px-3 py-1 rounded-xl bg-ink-950/95 border border-alert-500/60 text-white text-[11px] font-bold shadow-2xl flex items-center gap-2 backdrop-blur animate-bounce z-30">
-                <span className="live-dot-alert" style={{ width: 7, height: 7 }} />
-                <span className="text-white tracking-wide">{ambulanceTitle}</span>
-                <span className="px-1.5 py-0.5 rounded bg-primary-600/30 text-primary-300 font-mono text-[10px]">22 km/h</span>
+            <div className="relative group flex flex-col items-center cursor-pointer z-50">
+              
+              {/* Floating Live Badge & Speed Counter Tag */}
+              <div className="absolute -top-12 whitespace-nowrap px-3 py-1.5 rounded-xl bg-ink-950 border-2 border-alert-500 text-white text-xs font-bold shadow-2xl flex items-center gap-2 backdrop-blur animate-bounce z-40">
+                <span className="live-dot-alert" style={{ width: 8, height: 8 }} />
+                <span className="text-white font-extrabold tracking-wide">{ambulanceTitle}</span>
+                <span className="px-2 py-0.5 rounded-lg bg-alert-600 text-white font-mono text-xs shadow-md font-extrabold">
+                  ⚡ SPEED: {currentSpeed} KM/H
+                </span>
               </div>
 
-              {/* Attractive Vehicle Icon Capsule - Straight Upright */}
-              <div className="relative flex items-center justify-center z-20">
-                {/* Flashing Dual Red/Blue Emergency Sirens */}
-                <div className="absolute -top-2 flex gap-2 z-30">
-                  <span className="w-2.5 h-2.5 rounded-full bg-alert-500 animate-ping shadow-[0_0_10px_#ef4444]" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-sky-400 animate-ping shadow-[0_0_10px_#38bdf8]" style={{ animationDelay: "200ms" }} />
+              {/* Ultra-Visible White & Red Ambulance Badge - Straight Upright */}
+              <div className="relative flex items-center justify-center z-30">
+                {/* Flashing Dual Red & Blue Siren Beacons */}
+                <div className="absolute -top-3 flex gap-2 z-40">
+                  <span className="w-3 h-3 rounded-full bg-alert-500 animate-ping shadow-[0_0_12px_#ef4444]" />
+                  <span className="w-3 h-3 rounded-full bg-sky-400 animate-ping shadow-[0_0_12px_#38bdf8]" style={{ animationDelay: "200ms" }} />
                 </div>
 
-                {/* Main Vehicle Badge Container */}
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-ink-950 via-primary-950 to-alert-950 border-2 border-white text-white flex items-center justify-center shadow-[0_0_35px_rgba(14,165,233,0.8)] relative overflow-hidden group-hover:scale-110 transition-transform">
-                  <div className="absolute inset-0 bg-primary-600/20 mix-blend-overlay" />
+                {/* High Contrast Bright White & Red Badge Container */}
+                <div className="w-16 h-16 rounded-2xl bg-white border-4 border-alert-600 text-alert-600 flex items-center justify-center shadow-[0_0_45px_rgba(239,68,68,0.95)] relative overflow-hidden group-hover:scale-110 transition-transform">
+                  <div className="absolute inset-0 bg-alert-500/10" />
                   
-                  {/* Detailed Ambulance Vector SVG */}
-                  <svg className="w-8 h-8 text-white drop-shadow-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
-                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.28a1 1 0 0 0-.3-.7l-2.43-2.43a1 1 0 0 0-.71-.29H14" />
-                    <circle cx="7" cy="18" r="2" fill="#ef4444" stroke="white" strokeWidth="1.5" />
-                    <circle cx="17" cy="18" r="2" fill="#ef4444" stroke="white" strokeWidth="1.5" />
-                    <path d="M8 8h3" stroke="#ef4444" strokeWidth="2.5" />
-                    <path d="M9.5 6.5v3" stroke="#ef4444" strokeWidth="2.5" />
+                  {/* High Contrast Ambulance Icon */}
+                  <svg className="w-9 h-9 text-alert-600 drop-shadow-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" fill="#fef2f2" />
+                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.28a1 1 0 0 0-.3-.7l-2.43-2.43a1 1 0 0 0-.71-.29H14" fill="#fef2f2" />
+                    <circle cx="7" cy="18" r="2" fill="#dc2626" stroke="white" strokeWidth="1.5" />
+                    <circle cx="17" cy="18" r="2" fill="#dc2626" stroke="white" strokeWidth="1.5" />
+                    <path d="M8 8h3" stroke="#dc2626" strokeWidth="3" />
+                    <path d="M9.5 6.5v3" stroke="#dc2626" strokeWidth="3" />
                   </svg>
                 </div>
 
-                {/* Outer Glow Pulse Rings */}
-                <span className="absolute -inset-2 rounded-2xl border-2 border-primary-400/80 opacity-75 animate-ping pointer-events-none" />
-                <span className="absolute -inset-4 rounded-3xl border border-alert-500/50 opacity-40 animate-pulse pointer-events-none" />
+                {/* Outer Red & Cyan Pulse Aura Rings */}
+                <span className="absolute -inset-2 rounded-2xl border-2 border-alert-500 opacity-80 animate-ping pointer-events-none" />
+                <span className="absolute -inset-4 rounded-3xl border-2 border-sky-400 opacity-50 animate-pulse pointer-events-none" />
               </div>
             </div>
           </Marker>
@@ -467,17 +480,21 @@ export function Map({
 
       {/* Emergency Shortest Route Live HUD Overlay */}
       {showAmbulanceRoute && (
-        <div className="absolute bottom-3 left-3 z-10 p-3 rounded-xl bg-ink-950/90 backdrop-blur border border-ink-800 shadow-2xl text-white max-w-xs">
+        <div className="absolute bottom-3 left-3 z-10 p-3.5 rounded-2xl bg-ink-950/95 backdrop-blur border border-ink-800 shadow-2xl text-white max-w-xs">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-[10px] font-mono text-primary-400 font-bold uppercase tracking-wider flex items-center gap-1">
               <span className="live-dot" style={{ width: 6, height: 6 }} /> 5 CONNECTED HOSPITAL CORRIDORS
             </span>
-            <span className="text-[10px] font-mono text-ink-400">ETA 4m 15s</span>
+            <span className="px-2 py-0.5 rounded bg-alert-600 text-white text-[10px] font-mono font-bold">
+              ⚡ {currentSpeed} KM/H
+            </span>
           </div>
-          <p className="text-xs font-bold text-white mb-1">Ambulance AMB-08 ➔ Emergency Point</p>
-          <div className="w-full bg-ink-900 rounded-full h-1.5 overflow-hidden">
+          <p className="text-xs font-bold text-white mb-1 flex items-center gap-1.5">
+            <span className="text-alert-400">🚑 AMB-08</span> ➔ Ramkund Emergency Spot
+          </p>
+          <div className="w-full bg-ink-900 rounded-full h-2 overflow-hidden border border-ink-800">
             <div 
-              className="bg-primary-500 h-1.5 rounded-full transition-all duration-300 shadow-glow-primary"
+              className="bg-alert-500 h-2 rounded-full transition-all duration-300 shadow-glow-alert"
               style={{ width: `${Math.round(((currentSegmentIndex + progress) / (activeRoute.length - 1)) * 100)}%` }}
             />
           </div>
