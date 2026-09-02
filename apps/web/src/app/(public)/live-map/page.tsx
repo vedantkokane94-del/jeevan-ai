@@ -58,6 +58,26 @@ const AMBULANCE_POINTS = [
   { id: "amb12", latitude: 20.0080, longitude: 73.7940, title: "AMB-12 — Panchavati Corridor", severity: "MEDIUM" as const },
 ];
 
+const POLICE_POINTS = [
+  { id: "pol01", latitude: 20.0065, longitude: 73.7920, title: "Ramkund Mission Control Outpost", severity: "HIGH" as const },
+  { id: "pol02", latitude: 20.0075, longitude: 73.7940, title: "Panchavati Police Station", severity: "MEDIUM" as const },
+  { id: "pol03", latitude: 19.9980, longitude: 73.7845, title: "CBS Transit Security Hub", severity: "LOW" as const },
+  { id: "pol04", latitude: 19.9328, longitude: 73.5315, title: "Trimbakeshwar Control Post", severity: "MEDIUM" as const },
+];
+
+const PARKING_POINTS = [
+  { id: "prk01", latitude: 20.0012, longitude: 73.8048, title: "Tapovan Mega Pilgrim Parking P1", severity: "LOW" as const },
+  { id: "prk02", latitude: 20.0150, longitude: 73.7980, title: "Nilgiri Baug Bus & Vehicle Yard P2", severity: "LOW" as const },
+  { id: "prk03", latitude: 19.9510, longitude: 73.8320, title: "Nashik Road Station Shuttle Yard P3", severity: "LOW" as const },
+  { id: "prk04", latitude: 19.9300, longitude: 73.5380, title: "Trimbakeshwar Bypass Parking P4", severity: "LOW" as const },
+];
+
+const VOLUNTEER_POINTS = [
+  { id: "vol01", latitude: 20.0062, longitude: 73.7928, title: "Volunteer Post 1 — Ramkund Ghat Assistance", severity: "LOW" as const },
+  { id: "vol02", latitude: 20.0079, longitude: 73.7948, title: "Volunteer Post 2 — Kalaram Temple Crowd Flow", severity: "LOW" as const },
+  { id: "vol03", latitude: 20.0015, longitude: 73.8052, title: "Volunteer Post 3 — Tapovan Lost & Found Booth", severity: "LOW" as const },
+];
+
 export default function LiveMapPage() {
   const [layers, setLayers] = useState(DEFAULT_LAYERS);
   const [showLayers, setShowLayers] = useState(false);
@@ -75,6 +95,9 @@ export default function LiveMapPage() {
     if (layers.find(l => l.id === "zones")?.enabled) points.push(...ZONE_POINTS);
     if (layers.find(l => l.id === "medical")?.enabled) points.push(...MEDICAL_POINTS);
     if (layers.find(l => l.id === "ambulances")?.enabled) points.push(...AMBULANCE_POINTS);
+    if (layers.find(l => l.id === "police")?.enabled) points.push(...POLICE_POINTS);
+    if (layers.find(l => l.id === "parking")?.enabled) points.push(...PARKING_POINTS);
+    if (layers.find(l => l.id === "volunteers")?.enabled) points.push(...VOLUNTEER_POINTS);
     return points;
   }, [layers]);
 

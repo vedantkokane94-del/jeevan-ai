@@ -12,6 +12,7 @@ export interface MapPoint {
   longitude: number;
   title: string;
   severity: "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
+  category?: "hospital" | "camp" | "zone" | "parking" | "police" | "transit";
 }
 
 export interface MapProps {
@@ -62,7 +63,62 @@ const DEFAULT_ROUTE: [number, number][] = [
   [20.0063, 73.7925], // Ramkund Holy Snan Ghat (Google Maps Reference)
 ];
 
-// Route Glow & Core Layers
+// 5 Nearest Hospital Emergency Routes (Google Maps Verified Corridors)
+const HOSPITAL_ROUTES = [
+  {
+    id: "route-civil",
+    name: "Civil Hospital Emergency Corridor",
+    color: "#0ea5e9", // Cyan
+    coords: [
+      [73.7925, 20.0063], // Ramkund
+      [73.7890, 20.0055], // Panchavati Bridge
+      [73.7860, 20.0048], // Ashok Stambh
+      [73.7820, 20.0035], // CBS Signal
+      [73.7785, 20.0020], // Civil Hospital Nashik
+    ]
+  },
+  {
+    id: "route-apollo",
+    name: "Apollo Hospital Panchavati Corridor",
+    color: "#a855f7", // Purple
+    coords: [
+      [73.7945, 20.0078], // Kalaram Mandir
+      [73.7960, 20.0100], // Panchavati Circle
+      [73.7980, 20.0125], // Apollo Hospitals Panchavati
+    ]
+  },
+  {
+    id: "route-district",
+    name: "District Hospital CBS Corridor",
+    color: "#10b981", // Emerald
+    coords: [
+      [73.7915, 20.0055], // Godavari Main Ghat
+      [73.7880, 20.0010], // Victoria Bridge
+      [73.7852, 19.9975], // District Hospital CBS
+    ]
+  },
+  {
+    id: "route-sahyadri",
+    name: "Sahyadri Hospital Wadala Corridor",
+    color: "#f97316", // Orange
+    coords: [
+      [73.8048, 20.0012], // Tapovan Sector
+      [73.7980, 19.9930], // Dwarka Circle
+      [73.7910, 19.9880], // Sahyadri Hospital Wadala
+    ]
+  },
+  {
+    id: "route-trimbak",
+    name: "Trimbakeshwar Sub-District Hospital Corridor",
+    color: "#f59e0b", // Amber
+    coords: [
+      [73.5290, 19.9335], // Kushavarta Kund
+      [73.5320, 19.9328], // Trimbak Bus Stand
+      [73.5350, 19.9322], // Sub-District Hospital Trimbak
+    ]
+  }
+];
+
 const routeGlowLayer: LayerProps = {
   id: "emergency-route-glow",
   type: "line",
@@ -161,13 +217,13 @@ export function Map({
   const [ambulancePos, setAmbulancePos] = React.useState<[number, number]>(activeRoute[0]);
   const [heading, setHeading] = React.useState(0);
 
-  // Animation Loop for Moving Ambulance along Shortest Route
+  // Animation Loop for Moving Ambulance along Shortest Route (Slower & Smoother)
   React.useEffect(() => {
     if (!showAmbulanceRoute || activeRoute.length < 2) return;
 
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
-        const nextProgress = prevProgress + 0.04;
+        const nextProgress = prevProgress + 0.008; // Slower speed (approx 20 km/h simulation)
         if (nextProgress >= 1) {
           setCurrentSegmentIndex((prevSeg) => (prevSeg + 1) % (activeRoute.length - 1));
           return 0;
@@ -238,7 +294,27 @@ export function Map({
           </Source>
         )}
 
-        {/* Shortest Route Emergency Corridor Layers */}
+        {/* 5 Nearest Hospital Emergency Routes */}
+        {showAmbulanceRoute && HOSPITAL_ROUTES.map(hr => (
+          <Source key={hr.id} id={`${hr.id}-source`} type="geojson" data={{
+            type: "Feature",
+            properties: {},
+            geometry: { type: "LineString", coordinates: hr.coords }
+          }}>
+            <Layer
+              id={`${hr.id}-layer`}
+              type="line"
+              layout={{ "line-join": "round", "line-cap": "round" }}
+              paint={{
+                "line-color": hr.color,
+                "line-width": 4,
+                "line-opacity": 0.85
+              }}
+            />
+          </Source>
+        ))}
+
+        {/* Shortest Route Primary Active Corridor */}
         {showAmbulanceRoute && (
           <Source id="emergency-route-source" type="geojson" data={routeGeoJSON}>
             <Layer {...routeGlowLayer} />
@@ -289,7 +365,7 @@ export function Map({
               <div className="absolute -top-10 whitespace-nowrap px-2.5 py-1 rounded-lg bg-ink-950 border border-primary-500/50 text-white text-[11px] font-bold shadow-xl flex items-center gap-1.5 backdrop-blur animate-bounce">
                 <span className="live-dot" style={{ width: 6, height: 6 }} />
                 <span className="text-primary-400">{ambulanceTitle}</span>
-                <span className="text-ink-400">| 34 km/h</span>
+                <span className="text-ink-400">| 22 km/h</span>
               </div>
 
               {/* Vehicle Icon Container with Rotational Heading */}
@@ -346,11 +422,11 @@ export function Map({
         <div className="absolute bottom-3 left-3 z-10 p-3 rounded-xl bg-ink-950/90 backdrop-blur border border-ink-800 shadow-2xl text-white max-w-xs">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-[10px] font-mono text-primary-400 font-bold uppercase tracking-wider flex items-center gap-1">
-              <span className="live-dot" style={{ width: 6, height: 6 }} /> SHORTEST CORRIDOR ACTIVE
+              <span className="live-dot" style={{ width: 6, height: 6 }} /> 5 HOSPITAL ROUTES ACTIVE
             </span>
-            <span className="text-[10px] font-mono text-ink-400">ETA 2m 45s</span>
+            <span className="text-[10px] font-mono text-ink-400">ETA 4m 15s</span>
           </div>
-          <p className="text-xs font-bold text-white mb-1">Ambulance AMB-08 ➔ Ramkund Site</p>
+          <p className="text-xs font-bold text-white mb-1">Ambulance AMB-08 ➔ Civil Hospital</p>
           <div className="w-full bg-ink-900 rounded-full h-1.5 overflow-hidden">
             <div 
               className="bg-primary-500 h-1.5 rounded-full transition-all duration-300 shadow-glow-primary"
