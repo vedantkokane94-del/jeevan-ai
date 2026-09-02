@@ -388,27 +388,44 @@ export function Map({
           </Marker>
         ))}
 
-        {/* LIVE MOVING AMBULANCE MARKER */}
+        {/* LIVE MOVING AMBULANCE MARKER (ATTRACTIVE & STRAIGHT) */}
         {showAmbulanceRoute && (
           <Marker longitude={ambulancePos[1]} latitude={ambulancePos[0]} anchor="center">
             <div className="relative group flex flex-col items-center cursor-pointer">
               {/* Floating Live Badge & Speed */}
-              <div className="absolute -top-10 whitespace-nowrap px-2.5 py-1 rounded-lg bg-ink-950 border border-primary-500/50 text-white text-[11px] font-bold shadow-xl flex items-center gap-1.5 backdrop-blur animate-bounce">
-                <span className="live-dot" style={{ width: 6, height: 6 }} />
-                <span className="text-primary-400">{ambulanceTitle}</span>
-                <span className="text-ink-400">| 22 km/h</span>
+              <div className="absolute -top-11 whitespace-nowrap px-3 py-1 rounded-xl bg-ink-950/95 border border-alert-500/60 text-white text-[11px] font-bold shadow-2xl flex items-center gap-2 backdrop-blur animate-bounce z-30">
+                <span className="live-dot-alert" style={{ width: 7, height: 7 }} />
+                <span className="text-white tracking-wide">{ambulanceTitle}</span>
+                <span className="px-1.5 py-0.5 rounded bg-primary-600/30 text-primary-300 font-mono text-[10px]">22 km/h</span>
               </div>
 
-              {/* Vehicle Icon Container with Rotational Heading */}
-              <div 
-                className="w-11 h-11 rounded-2xl bg-primary-600 border-2 border-white text-white flex items-center justify-center shadow-2xl shadow-primary-600/60 transition-transform duration-100"
-                style={{ transform: `rotate(${heading}deg)` }}
-              >
-                <span className="text-lg">🚑</span>
-              </div>
+              {/* Attractive Vehicle Icon Capsule - Straight Upright */}
+              <div className="relative flex items-center justify-center z-20">
+                {/* Flashing Dual Red/Blue Emergency Sirens */}
+                <div className="absolute -top-2 flex gap-2 z-30">
+                  <span className="w-2.5 h-2.5 rounded-full bg-alert-500 animate-ping shadow-[0_0_10px_#ef4444]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-sky-400 animate-ping shadow-[0_0_10px_#38bdf8]" style={{ animationDelay: "200ms" }} />
+                </div>
 
-              {/* Pulse Beacon */}
-              <span className="absolute -inset-2 rounded-full border-2 border-primary-400 opacity-60 animate-ping pointer-events-none" />
+                {/* Main Vehicle Badge Container */}
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-ink-950 via-primary-950 to-alert-950 border-2 border-white text-white flex items-center justify-center shadow-[0_0_35px_rgba(14,165,233,0.8)] relative overflow-hidden group-hover:scale-110 transition-transform">
+                  <div className="absolute inset-0 bg-primary-600/20 mix-blend-overlay" />
+                  
+                  {/* Detailed Ambulance Vector SVG */}
+                  <svg className="w-8 h-8 text-white drop-shadow-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.28a1 1 0 0 0-.3-.7l-2.43-2.43a1 1 0 0 0-.71-.29H14" />
+                    <circle cx="7" cy="18" r="2" fill="#ef4444" stroke="white" strokeWidth="1.5" />
+                    <circle cx="17" cy="18" r="2" fill="#ef4444" stroke="white" strokeWidth="1.5" />
+                    <path d="M8 8h3" stroke="#ef4444" strokeWidth="2.5" />
+                    <path d="M9.5 6.5v3" stroke="#ef4444" strokeWidth="2.5" />
+                  </svg>
+                </div>
+
+                {/* Outer Glow Pulse Rings */}
+                <span className="absolute -inset-2 rounded-2xl border-2 border-primary-400/80 opacity-75 animate-ping pointer-events-none" />
+                <span className="absolute -inset-4 rounded-3xl border border-alert-500/50 opacity-40 animate-pulse pointer-events-none" />
+              </div>
             </div>
           </Marker>
         )}
