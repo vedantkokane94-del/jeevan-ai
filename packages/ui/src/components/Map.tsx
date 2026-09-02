@@ -79,8 +79,8 @@ export function Map({
     ? "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json"
     : "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 
-  const handleMarkerClick = (e: MapLayerMouseEvent, pointId: string) => {
-    e.originalEvent.stopPropagation();
+  const handleMarkerClick = (e: any, pointId: string) => {
+    if (e?.originalEvent) e.originalEvent.stopPropagation();
     if (onPointClick) onPointClick(pointId);
   };
 
@@ -113,7 +113,7 @@ export function Map({
             longitude={point.longitude}
             latitude={point.latitude}
             anchor="bottom"
-            onClick={(e: MapLayerMouseEvent) => handleMarkerClick(e, point.id)}
+            onClick={(e: any) => handleMarkerClick(e, point.id)}
           >
             <div className={`w-6 h-6 rounded-full border-2 border-white shadow-glow-primary flex items-center justify-center cursor-pointer transition-transform hover:scale-110
               ${point.severity === "CRITICAL" ? "bg-alert-500 animate-pulse shadow-glow-alert" : 
