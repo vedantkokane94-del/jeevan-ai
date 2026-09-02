@@ -39,6 +39,7 @@ const satelliteStyle: any = {
         "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
       ],
       tileSize: 256,
+      maxzoom: 18,
       attribution: "Esri, Maxar, Earthstar Geographics"
     },
     "carto-labels-source": {
@@ -47,6 +48,7 @@ const satelliteStyle: any = {
         "https://basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png"
       ],
       tileSize: 256,
+      maxzoom: 18,
       attribution: "CartoDB"
     }
   },
@@ -56,14 +58,14 @@ const satelliteStyle: any = {
       type: "raster",
       source: "esri-satellite-source",
       minzoom: 0,
-      maxzoom: 20
+      maxzoom: 18
     },
     {
       id: "carto-labels-layer",
       type: "raster",
       source: "carto-labels-source",
       minzoom: 0,
-      maxzoom: 20
+      maxzoom: 18
     }
   ]
 };
@@ -317,10 +319,13 @@ export function Map({
         initialViewState={{
           longitude: center[1],
           latitude: center[0],
-          zoom: zoom,
-          pitch: 62, // 3D Satellite Tilt
-          bearing: -18 // 3D Perspective Rotation
+          zoom: Math.min(zoom, 17.5),
+          pitch: 45, // Smooth 3D Satellite Tilt
+          bearing: -15
         }}
+        maxZoom={17.5}
+        minZoom={5}
+        maxPitch={55}
         mapStyle={mapStyle}
         style={{ width: "100%", height: "100%" }}
       >

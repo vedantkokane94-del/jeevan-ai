@@ -119,17 +119,17 @@ export default function LiveMapPage() {
           </div>
         </div>
 
-        {/* Live Status Indicators Integrated in Header (NO Map Overlap) */}
-        <div className="hidden sm:flex items-center gap-2 shrink-0">
-          <div className="px-2.5 py-1 rounded-lg bg-ink-900 border border-ink-800 text-[11px] font-mono text-white flex items-center gap-1.5">
+        {/* Live Status Indicators Integrated in Header (Visible on Mobile & Desktop, NO Map Overlap) */}
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <div className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-ink-900 border border-ink-800 text-[10px] sm:text-[11px] font-mono text-white flex items-center gap-1 sm:gap-1.5">
             <span className="live-dot" style={{ width: 6, height: 6 }} />
             LIVE • Nashik Kumbh
           </div>
 
-          <div className="px-2.5 py-1 rounded-lg bg-ink-900 border border-ink-800 text-[11px] font-mono flex items-center gap-1.5">
+          <div className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-ink-900 border border-ink-800 text-[10px] sm:text-[11px] font-mono flex items-center gap-1 sm:gap-1.5">
             <span className="live-dot-alert" style={{ width: 6, height: 6 }} />
             <span className="text-alert-400 font-bold">{ZONE_POINTS.filter(z => z.severity === "CRITICAL" || z.severity === "HIGH").length}</span>
-            <span className="text-ink-300">High Risk Zones</span>
+            <span className="text-ink-300">High Risk</span>
           </div>
         </div>
 
