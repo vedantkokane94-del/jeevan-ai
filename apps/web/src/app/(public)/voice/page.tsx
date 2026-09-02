@@ -157,11 +157,14 @@ export default function VoiceAssistant() {
                 language === "hi-IN" ? "एम्बुलेंस रवाना कर दी गई है! लाइव ट्रैकिंग शुरू हो रही है।" :
                 "Ambulance Dispatched! Initiating live tactical tracking...";
     setFeedback(msg);
-    speak(msg, language);
+    try {
+      speak(msg, language);
+    } catch (e) {}
 
-    setTimeout(() => {
-      router.push("/live-map");
-    }, 1500);
+    // Immediate hard fail-safe navigation to /live-map
+    if (typeof window !== "undefined") {
+      window.location.href = "/live-map";
+    }
   };
 
   const toggleListening = () => {
@@ -274,13 +277,14 @@ export default function VoiceAssistant() {
               ))}
             </div>
 
-            {/* Instant Action Dispatch Button */}
-            <button
+            {/* Instant Action Dispatch Link Button */}
+            <Link
+              href="/live-map"
               onClick={confirmDispatchAndRedirect}
-              className="w-full h-14 rounded-xl bg-alert-600 hover:bg-alert-700 text-white font-display font-bold text-lg transition-all shadow-glow-alert flex items-center justify-center gap-3 active:scale-95"
+              className="w-full h-14 rounded-xl bg-alert-600 hover:bg-alert-700 text-white font-display font-bold text-lg transition-all shadow-glow-alert flex items-center justify-center gap-3 active:scale-95 text-center cursor-pointer"
             >
               <Siren className="w-5 h-5" /> CONFIRM & TRACK AMBULANCE AMB-08
-            </button>
+            </Link>
           </div>
         ) : (
           /* ═══════ IDLE / LISTENING / PROCESSING ═══════ */
