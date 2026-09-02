@@ -164,7 +164,7 @@ REDIS_URL=<render-redis-url>
 - **Vercel Dashboard:** https://vercel.com/dashboard
 - **Render Dashboard:** https://dashboard.render.com
 - **GitHub:** https://github.com/vedantkokane94-del
-- **Your Frontend:** https://<your-vercel-domain>.vercel.app
+- **Your Frontend (Vercel):** https://jeevan-ai-main.vercel.app
 - **Your API:** https://jeevan-api.onrender.com
 - **API Docs:** https://jeevan-api.onrender.com/api/docs
 

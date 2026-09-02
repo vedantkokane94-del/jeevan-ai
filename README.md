@@ -1,9 +1,13 @@
 # JEEVAN AI
 
-
 > Protect Every Pilgrim. Predict Every Risk. Respond Before It's Too Late.
 
 AI-powered Public Health & Emergency Response Platform built specifically for **Nashik–Trimbakeshwar Simhastha Kumbh Mela 2027**.
+
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://jeevan-ai-main.vercel.app)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vedantkokane94-del/jeevan-ai)
+
+🚀 **Live Vercel Application**: [https://jeevan-ai-main.vercel.app](https://jeevan-ai-main.vercel.app)
 
 ---
 <img width="868" height="665" alt="logo png (2)" src="https://github.com/user-attachments/assets/f5e00bdc-bf70-4106-a2ec-d85ea3215e2b" />
