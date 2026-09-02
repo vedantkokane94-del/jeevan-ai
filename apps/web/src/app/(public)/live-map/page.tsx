@@ -105,33 +105,49 @@ export default function LiveMapPage() {
     <div className="h-[100dvh] flex flex-col bg-ink-950" data-theme="ink">
 
       {/* ═══════ HEADER ═══════ */}
-      <header className="glass-dark z-30 px-4 py-2.5 flex items-center justify-between shrink-0">
-        <div className="flex items-center gap-3">
+      <header className="glass-dark z-30 px-3 sm:px-4 py-2 flex items-center justify-between shrink-0 border-b border-ink-800 gap-2 overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-2.5 shrink-0">
           <Link href="/emergency" className="w-8 h-8 rounded-lg bg-ink-900 border border-ink-800 flex items-center justify-center" id="back-button">
             <ArrowLeft className="w-4 h-4 text-ink-300" />
           </Link>
           <div>
-            <h1 className="text-sm font-display font-bold text-white flex items-center gap-2">
+            <h1 className="text-sm font-display font-bold text-white flex items-center gap-1.5 leading-none">
               <Layers className="w-4 h-4 text-primary-500" />
               Live Kumbh Map
             </h1>
-            <p className="text-[9px] text-ink-400 font-mono">{enabledLayers.length} layers active • [SIMULATION]</p>
+            <p className="text-[9px] text-ink-400 font-mono mt-0.5">{enabledLayers.length} active layers</p>
           </div>
         </div>
+
+        {/* Live Status Indicators Integrated in Header (NO Map Overlap) */}
+        <div className="hidden sm:flex items-center gap-2 shrink-0">
+          <div className="px-2.5 py-1 rounded-lg bg-ink-900 border border-ink-800 text-[11px] font-mono text-white flex items-center gap-1.5">
+            <span className="live-dot" style={{ width: 6, height: 6 }} />
+            LIVE • Nashik Kumbh
+          </div>
+
+          <div className="px-2.5 py-1 rounded-lg bg-ink-900 border border-ink-800 text-[11px] font-mono flex items-center gap-1.5">
+            <span className="live-dot-alert" style={{ width: 6, height: 6 }} />
+            <span className="text-alert-400 font-bold">{ZONE_POINTS.filter(z => z.severity === "CRITICAL" || z.severity === "HIGH").length}</span>
+            <span className="text-ink-300">High Risk Zones</span>
+          </div>
+        </div>
+
+        {/* Layers Dropdown Toggle */}
         <button
           onClick={() => setShowLayers(!showLayers)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink-900 border border-ink-800 text-xs font-semibold text-ink-300 hover:text-white transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink-900 border border-ink-800 text-xs font-semibold text-ink-300 hover:text-white transition-colors shrink-0"
           id="layers-toggle"
         >
-          <Layers className="w-3.5 h-3.5" />
-          Layers
+          <Layers className="w-3.5 h-3.5 text-primary-400" />
+          Layers ({enabledLayers.length})
           <ChevronDown className={`w-3 h-3 transition-transform ${showLayers ? "rotate-180" : ""}`} />
         </button>
       </header>
 
       {/* ═══════ LAYER CONTROLS ═══════ */}
       {showLayers && (
-        <div className="absolute top-14 right-4 z-40 w-64 card-elevated bg-ink-950/95 backdrop-blur border-ink-800 p-3 animate-slide-in-bottom">
+        <div className="absolute top-14 right-4 z-40 w-64 card-elevated bg-ink-950/95 backdrop-blur border-ink-800 p-3 animate-slide-in-bottom shadow-2xl">
           <p className="text-[10px] text-ink-400 font-mono uppercase tracking-wider mb-3">Toggle Map Layers</p>
           <div className="space-y-1">
             {layers.map(layer => (
@@ -168,24 +184,10 @@ export default function LiveMapPage() {
           onPointClick={(id) => setSelectedZone(id)}
         />
 
-        {/* Bottom Status Bar Badges (Shifted to bottom to avoid blocking top 3D map style controls) */}
-        <div className="absolute bottom-14 left-4 right-4 z-10 flex items-center justify-between pointer-events-none">
-          <div className="px-3 py-1.5 rounded-lg bg-ink-950/90 backdrop-blur border border-ink-800 text-xs font-mono text-white flex items-center gap-2 pointer-events-auto shadow-lg">
-            <span className="live-dot" style={{ width: 6, height: 6 }} />
-            LIVE • Nashik Kumbh
-          </div>
-
-          <div className="px-3 py-1.5 rounded-lg bg-ink-950/90 backdrop-blur border border-ink-800 text-xs font-mono flex items-center gap-2 pointer-events-auto shadow-lg">
-            <span className="live-dot-alert" style={{ width: 6, height: 6 }} />
-            <span className="text-alert-400 font-bold">{ZONE_POINTS.filter(z => z.severity === "CRITICAL" || z.severity === "HIGH").length}</span>
-            <span className="text-ink-400">High Risk Zones</span>
-          </div>
-        </div>
-
-        {/* Bottom Legend */}
-        <div className="absolute bottom-3 left-4 right-4 z-10 flex gap-2 overflow-x-auto no-scrollbar">
+        {/* Bottom Right Layer Legend (Separated on bottom-right to avoid bottom-left HUD overlap) */}
+        <div className="absolute bottom-3 right-3 z-10 flex gap-1.5 max-w-[50vw] sm:max-w-md overflow-x-auto no-scrollbar pointer-events-auto">
           {enabledLayers.map(layer => (
-            <div key={layer.id} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-ink-950/80 backdrop-blur border border-ink-800 text-[10px] text-ink-300 font-medium shrink-0">
+            <div key={layer.id} className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-ink-950/90 backdrop-blur border border-ink-800 text-[10px] text-ink-300 font-medium shrink-0 shadow-lg">
               <div className={`w-2 h-2 rounded-full ${layer.color}`} />
               {layer.label}
             </div>
