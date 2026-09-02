@@ -29,7 +29,7 @@ export interface MapProps {
   destinationTitle?: string;
 }
 
-// 3D ESRI Satellite style configuration
+// 3D ESRI Satellite style configuration with Surrounding Street & Location Vector Labels Overlay (Carto Voyager)
 const satelliteStyle: any = {
   version: 8,
   sources: {
@@ -40,6 +40,14 @@ const satelliteStyle: any = {
       ],
       tileSize: 256,
       attribution: "Esri, Maxar, Earthstar Geographics"
+    },
+    "carto-labels-source": {
+      type: "raster",
+      tiles: [
+        "https://basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png"
+      ],
+      tileSize: 256,
+      attribution: "CartoDB"
     }
   },
   layers: [
@@ -47,6 +55,13 @@ const satelliteStyle: any = {
       id: "esri-satellite-layer",
       type: "raster",
       source: "esri-satellite-source",
+      minzoom: 0,
+      maxzoom: 20
+    },
+    {
+      id: "carto-labels-layer",
+      type: "raster",
+      source: "carto-labels-source",
       minzoom: 0,
       maxzoom: 20
     }
@@ -348,15 +363,15 @@ export function Map({
           </Source>
         )}
 
-        {/* 5 Connected Hospital Destination Markers */}
+        {/* 5 Connected Hospital Destination Markers (Non-Overlapping Compact Badges) */}
         {showAmbulanceRoute && CONNECTED_HOSPITAL_ROUTES.map(hr => (
           <Marker key={`dest-${hr.id}`} longitude={hr.destCoords[0]} latitude={hr.destCoords[1]} anchor="bottom">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center group cursor-pointer z-10 hover:z-50">
               <div 
-                className="px-2.5 py-1 rounded-md text-white text-[10px] font-bold shadow-lg mb-1 flex items-center gap-1 backdrop-blur"
+                className="px-2 py-0.5 rounded-md text-white text-[9px] font-bold shadow-lg mb-1 flex items-center gap-1 backdrop-blur max-w-[130px] truncate leading-tight transition-transform group-hover:scale-105"
                 style={{ backgroundColor: hr.color }}
               >
-                <span>🏥</span> {hr.destName}
+                <span>🏥</span> <span className="truncate">{hr.destName}</span>
               </div>
               <div className="w-3.5 h-3.5 rounded-full border-2 border-white flex items-center justify-center shadow-md" style={{ backgroundColor: hr.color }} />
             </div>
@@ -366,17 +381,17 @@ export function Map({
         {/* CENTRAL ACTIVE EMERGENCY POINT MARKER */}
         {showAmbulanceRoute && (
           <Marker longitude={EMERGENCY_SPOT[1]} latitude={EMERGENCY_SPOT[0]} anchor="bottom">
-            <div className="flex flex-col items-center z-20">
-              <div className="px-3 py-1.5 rounded-xl bg-alert-600 border-2 border-white text-white text-xs font-bold shadow-2xl shadow-alert-600/60 mb-1 flex items-center gap-1.5 animate-bounce">
-                <span className="live-dot-alert" style={{ width: 8, height: 8 }} />
+            <div className="flex flex-col items-center z-30">
+              <div className="px-2.5 py-1 rounded-xl bg-alert-600 border-2 border-white text-white text-[11px] font-bold shadow-2xl shadow-alert-600/60 mb-1 flex items-center gap-1.5 animate-bounce">
+                <span className="live-dot-alert" style={{ width: 6, height: 6 }} />
                 <span>🚨 EMERGENCY POINT (Ramkund Ghat)</span>
               </div>
-              <div className="w-6 h-6 rounded-full bg-alert-600 border-2 border-white flex items-center justify-center shadow-glow-alert animate-ping" />
+              <div className="w-5 h-5 rounded-full bg-alert-600 border-2 border-white flex items-center justify-center shadow-glow-alert animate-ping" />
             </div>
           </Marker>
         )}
 
-        {/* Points of Interest / Incidents */}
+        {/* Points of Interest / Incidents (Non-Overlapping Formatted Tooltips) */}
         {points.map((point) => (
           <Marker
             key={point.id}
@@ -385,15 +400,18 @@ export function Map({
             anchor="bottom"
             onClick={(e: any) => handleMarkerClick(e, point.id)}
           >
-            <div className={`w-6 h-6 rounded-full border-2 border-white shadow-glow-primary flex items-center justify-center cursor-pointer transition-transform hover:scale-110
-              ${point.severity === "CRITICAL" ? "bg-alert-500 animate-pulse shadow-glow-alert" : 
-                point.severity === "HIGH" ? "bg-accent-500" : 
-                point.severity === "MEDIUM" ? "bg-primary-500" : "bg-success-500"}`}
-            >
-               <div className="w-2 h-2 bg-white rounded-full" />
-            </div>
-            <div className="absolute top-7 left-1/2 -translate-x-1/2 whitespace-nowrap bg-ink-950/90 border border-ink-800 text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg backdrop-blur">
-              {point.title}
+            <div className="relative group flex flex-col items-center cursor-pointer">
+              <div className={`w-5 h-5 rounded-full border-2 border-white shadow-glow-primary flex items-center justify-center transition-transform hover:scale-110
+                ${point.severity === "CRITICAL" ? "bg-alert-500 animate-pulse shadow-glow-alert" : 
+                  point.severity === "HIGH" ? "bg-accent-500" : 
+                  point.severity === "MEDIUM" ? "bg-primary-500" : "bg-success-500"}`}
+              >
+                 <div className="w-1.5 h-1.5 bg-white rounded-full" />
+              </div>
+              {/* Clean non-overlapping badge with max width */}
+              <div className="absolute top-6 left-1/2 -translate-x-1/2 max-w-[130px] sm:max-w-[160px] text-center leading-tight text-[9px] font-bold px-2 py-1 rounded-lg bg-ink-950/95 border border-ink-800 text-white shadow-xl backdrop-blur pointer-events-none group-hover:z-50 group-hover:scale-105 transition-all line-clamp-2">
+                {point.title}
+              </div>
             </div>
           </Marker>
         ))}
