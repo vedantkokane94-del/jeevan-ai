@@ -53,6 +53,9 @@ const satelliteStyle: any = {
   ]
 };
 
+// Central Emergency Incident Spot (Ramkund Holy Snan Ghat)
+const EMERGENCY_SPOT: [number, number] = [20.0063, 73.7925]; // [lat, lng]
+
 // Default emergency route in Nashik Kumbh area based on Google Maps GPS (Civil Hospital to Ramkund Ghat)
 const DEFAULT_ROUTE: [number, number][] = [
   [20.0020, 73.7785], // Civil Hospital Nashik (Google Maps Reference)
@@ -60,17 +63,19 @@ const DEFAULT_ROUTE: [number, number][] = [
   [20.0048, 73.7860], // Ashok Stambh / Panchavati Bridge Approach
   [20.0055, 73.7890], // Godavari River Bridge Corridor
   [20.0062, 73.7915], // Malviya Chowk Panchavati
-  [20.0063, 73.7925], // Ramkund Holy Snan Ghat (Google Maps Reference)
+  [20.0063, 73.7925], // Ramkund Holy Snan Ghat Emergency Point
 ];
 
-// 5 Nearest Hospital Emergency Routes (Google Maps Verified Corridors)
-const HOSPITAL_ROUTES = [
+// 5 Nearest Hospital Emergency Routes ALL CONNECTED to central Emergency Point [73.7925, 20.0063]
+const CONNECTED_HOSPITAL_ROUTES = [
   {
     id: "route-civil",
     name: "Civil Hospital Emergency Corridor",
     color: "#0ea5e9", // Cyan
+    destName: "Civil Hospital Nashik",
+    destCoords: [73.7785, 20.0020] as [number, number],
     coords: [
-      [73.7925, 20.0063], // Ramkund
+      [73.7925, 20.0063], // Central Emergency Point (Ramkund)
       [73.7890, 20.0055], // Panchavati Bridge
       [73.7860, 20.0048], // Ashok Stambh
       [73.7820, 20.0035], // CBS Signal
@@ -81,8 +86,11 @@ const HOSPITAL_ROUTES = [
     id: "route-apollo",
     name: "Apollo Hospital Panchavati Corridor",
     color: "#a855f7", // Purple
+    destName: "Apollo Hospital Panchavati",
+    destCoords: [73.7980, 20.0125] as [number, number],
     coords: [
-      [73.7945, 20.0078], // Kalaram Mandir
+      [73.7925, 20.0063], // Central Emergency Point (Ramkund)
+      [73.7945, 20.0078], // Kalaram Mandir Chowk
       [73.7960, 20.0100], // Panchavati Circle
       [73.7980, 20.0125], // Apollo Hospitals Panchavati
     ]
@@ -91,8 +99,11 @@ const HOSPITAL_ROUTES = [
     id: "route-district",
     name: "District Hospital CBS Corridor",
     color: "#10b981", // Emerald
+    destName: "District Hospital CBS",
+    destCoords: [73.7852, 19.9975] as [number, number],
     coords: [
-      [73.7915, 20.0055], // Godavari Main Ghat
+      [73.7925, 20.0063], // Central Emergency Point (Ramkund)
+      [73.7915, 20.0055], // Godavari Main Ghat Exit
       [73.7880, 20.0010], // Victoria Bridge
       [73.7852, 19.9975], // District Hospital CBS
     ]
@@ -101,20 +112,26 @@ const HOSPITAL_ROUTES = [
     id: "route-sahyadri",
     name: "Sahyadri Hospital Wadala Corridor",
     color: "#f97316", // Orange
+    destName: "Sahyadri Hospital Wadala",
+    destCoords: [73.7910, 19.9880] as [number, number],
     coords: [
-      [73.8048, 20.0012], // Tapovan Sector
+      [73.7925, 20.0063], // Central Emergency Point (Ramkund)
+      [73.8048, 20.0012], // Tapovan Road
       [73.7980, 19.9930], // Dwarka Circle
       [73.7910, 19.9880], // Sahyadri Hospital Wadala
     ]
   },
   {
-    id: "route-trimbak",
-    name: "Trimbakeshwar Sub-District Hospital Corridor",
+    id: "route-wockhardt",
+    name: "Wockhardt Trauma Center Corridor",
     color: "#f59e0b", // Amber
+    destName: "Wockhardt Hospital Trauma Center",
+    destCoords: [73.7750, 19.9720] as [number, number],
     coords: [
-      [73.5290, 19.9335], // Kushavarta Kund
-      [73.5320, 19.9328], // Trimbak Bus Stand
-      [73.5350, 19.9322], // Sub-District Hospital Trimbak
+      [73.7925, 20.0063], // Central Emergency Point (Ramkund)
+      [73.7845, 19.9980], // CBS Flyover
+      [73.7800, 19.9780], // Mumbai Naka
+      [73.7750, 19.9720], // Wockhardt Hospital Trauma Center
     ]
   }
 ];
@@ -129,8 +146,8 @@ const routeGlowLayer: LayerProps = {
   },
   paint: {
     "line-color": "#0ea5e9",
-    "line-width": 12,
-    "line-opacity": 0.4,
+    "line-width": 14,
+    "line-opacity": 0.45,
     "line-blur": 6
   }
 };
@@ -199,7 +216,7 @@ export function Map({
   showAmbulanceRoute = true,
   routePath = DEFAULT_ROUTE,
   ambulanceTitle = "AMB-08 (Live)",
-  destinationTitle = "Ramkund Emergency Site",
+  destinationTitle = "Ramkund Emergency Point",
 }: MapProps) {
   const [activeTheme, setActiveTheme] = React.useState<"satellite" | "dark" | "light">(initialTheme);
 
@@ -223,7 +240,7 @@ export function Map({
 
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
-        const nextProgress = prevProgress + 0.008; // Slower speed (approx 20 km/h simulation)
+        const nextProgress = prevProgress + 0.008; // Slower speed (approx 22 km/h simulation)
         if (nextProgress >= 1) {
           setCurrentSegmentIndex((prevSeg) => (prevSeg + 1) % (activeRoute.length - 1));
           return 0;
@@ -258,7 +275,7 @@ export function Map({
     if (onPointClick) onPointClick(pointId);
   };
 
-  // GeoJSON LineString for Shortest Route Corridor
+  // GeoJSON LineString for Primary Active Route Corridor
   const routeGeoJSON: any = {
     type: "Feature",
     properties: {},
@@ -267,8 +284,6 @@ export function Map({
       coordinates: activeRoute.map(([lat, lng]) => [lng, lat]) // MapLibre uses [lng, lat]
     }
   };
-
-  const destPoint = activeRoute[activeRoute.length - 1];
 
   return (
     <div className={`w-full h-full relative z-0 rounded-xl overflow-hidden shadow-2xl ${className}`}>
@@ -294,8 +309,8 @@ export function Map({
           </Source>
         )}
 
-        {/* 5 Nearest Hospital Emergency Routes */}
-        {showAmbulanceRoute && HOSPITAL_ROUTES.map(hr => (
+        {/* 5 Nearest Hospital Emergency Routes ALL Connected to Ramkund Emergency Point */}
+        {showAmbulanceRoute && CONNECTED_HOSPITAL_ROUTES.map(hr => (
           <Source key={hr.id} id={`${hr.id}-source`} type="geojson" data={{
             type: "Feature",
             properties: {},
@@ -308,19 +323,47 @@ export function Map({
               paint={{
                 "line-color": hr.color,
                 "line-width": 4,
-                "line-opacity": 0.85
+                "line-opacity": 0.9
               }}
             />
           </Source>
         ))}
 
-        {/* Shortest Route Primary Active Corridor */}
+        {/* Shortest Primary Active Corridor */}
         {showAmbulanceRoute && (
           <Source id="emergency-route-source" type="geojson" data={routeGeoJSON}>
             <Layer {...routeGlowLayer} />
             <Layer {...routeCoreLayer} />
             <Layer {...routePulseLayer} />
           </Source>
+        )}
+
+        {/* 5 Connected Hospital Destination Markers */}
+        {showAmbulanceRoute && CONNECTED_HOSPITAL_ROUTES.map(hr => (
+          <Marker key={`dest-${hr.id}`} longitude={hr.destCoords[0]} latitude={hr.destCoords[1]} anchor="bottom">
+            <div className="flex flex-col items-center">
+              <div 
+                className="px-2.5 py-1 rounded-md text-white text-[10px] font-bold shadow-lg mb-1 flex items-center gap-1 backdrop-blur"
+                style={{ backgroundColor: hr.color }}
+              >
+                <span>🏥</span> {hr.destName}
+              </div>
+              <div className="w-3.5 h-3.5 rounded-full border-2 border-white flex items-center justify-center shadow-md" style={{ backgroundColor: hr.color }} />
+            </div>
+          </Marker>
+        ))}
+
+        {/* CENTRAL ACTIVE EMERGENCY POINT MARKER */}
+        {showAmbulanceRoute && (
+          <Marker longitude={EMERGENCY_SPOT[1]} latitude={EMERGENCY_SPOT[0]} anchor="bottom">
+            <div className="flex flex-col items-center z-20">
+              <div className="px-3 py-1.5 rounded-xl bg-alert-600 border-2 border-white text-white text-xs font-bold shadow-2xl shadow-alert-600/60 mb-1 flex items-center gap-1.5 animate-bounce">
+                <span className="live-dot-alert" style={{ width: 8, height: 8 }} />
+                <span>🚨 EMERGENCY POINT (Ramkund Ghat)</span>
+              </div>
+              <div className="w-6 h-6 rounded-full bg-alert-600 border-2 border-white flex items-center justify-center shadow-glow-alert animate-ping" />
+            </div>
+          </Marker>
         )}
 
         {/* Points of Interest / Incidents */}
@@ -344,18 +387,6 @@ export function Map({
             </div>
           </Marker>
         ))}
-
-        {/* Destination Marker */}
-        {showAmbulanceRoute && (
-          <Marker longitude={destPoint[1]} latitude={destPoint[0]} anchor="bottom">
-            <div className="flex flex-col items-center">
-              <div className="px-2.5 py-1 rounded-md bg-alert-600 border border-alert-400 text-white text-[10px] font-bold shadow-lg shadow-alert-600/40 mb-1 flex items-center gap-1 animate-pulse">
-                <span>📍</span> {destinationTitle}
-              </div>
-              <div className="w-5 h-5 rounded-full bg-alert-600 border-2 border-white flex items-center justify-center shadow-lg animate-ping" />
-            </div>
-          </Marker>
-        )}
 
         {/* LIVE MOVING AMBULANCE MARKER */}
         {showAmbulanceRoute && (
@@ -422,11 +453,11 @@ export function Map({
         <div className="absolute bottom-3 left-3 z-10 p-3 rounded-xl bg-ink-950/90 backdrop-blur border border-ink-800 shadow-2xl text-white max-w-xs">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-[10px] font-mono text-primary-400 font-bold uppercase tracking-wider flex items-center gap-1">
-              <span className="live-dot" style={{ width: 6, height: 6 }} /> 5 HOSPITAL ROUTES ACTIVE
+              <span className="live-dot" style={{ width: 6, height: 6 }} /> 5 CONNECTED HOSPITAL CORRIDORS
             </span>
             <span className="text-[10px] font-mono text-ink-400">ETA 4m 15s</span>
           </div>
-          <p className="text-xs font-bold text-white mb-1">Ambulance AMB-08 ➔ Civil Hospital</p>
+          <p className="text-xs font-bold text-white mb-1">Ambulance AMB-08 ➔ Emergency Point</p>
           <div className="w-full bg-ink-900 rounded-full h-1.5 overflow-hidden">
             <div 
               className="bg-primary-500 h-1.5 rounded-full transition-all duration-300 shadow-glow-primary"
