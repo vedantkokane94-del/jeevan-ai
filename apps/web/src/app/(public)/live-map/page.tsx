@@ -34,26 +34,28 @@ const DEFAULT_LAYERS: MapLayer[] = [
   { id: "corridors", label: "Emergency Corridors", icon: AlertTriangle, color: "bg-accent-700", enabled: false },
 ];
 
-/* ─── Zone Markers ─── */
+/* ─── Real Google Maps Reference Markers (Nashik & Trimbakeshwar Kumbh Area) ─── */
 const ZONE_POINTS = [
-  { id: "ramkund", latitude: 20.0059, longitude: 73.7903, title: "Ramkund — Crowd: HIGH", severity: "CRITICAL" as const },
-  { id: "panchavati", latitude: 20.0063, longitude: 73.7905, title: "Panchavati — Crowd: HIGH", severity: "HIGH" as const },
-  { id: "trimbak", latitude: 19.9325, longitude: 73.5311, title: "Trimbakeshwar — Moderate", severity: "MEDIUM" as const },
-  { id: "godavari", latitude: 19.9982, longitude: 73.7900, title: "Godavari Ghat — HIGH", severity: "HIGH" as const },
-  { id: "kushavarta", latitude: 19.9358, longitude: 73.5289, title: "Kushavarta — Low", severity: "LOW" as const },
+  { id: "ramkund", latitude: 20.0063, longitude: 73.7925, title: "Ramkund Ghat — Critical Density", severity: "CRITICAL" as const },
+  { id: "panchavati", latitude: 20.0078, longitude: 73.7945, title: "Panchavati / Kalaram — High Risk", severity: "HIGH" as const },
+  { id: "kapaleshwar", latitude: 20.0068, longitude: 73.7932, title: "Kapaleshwar Mandir Sector", severity: "HIGH" as const },
+  { id: "godavari", latitude: 20.0055, longitude: 73.7915, title: "Godavari Main Snan Ghat", severity: "HIGH" as const },
+  { id: "tapovan", latitude: 20.0012, longitude: 73.8048, title: "Tapovan Main Camp & Sector", severity: "MEDIUM" as const },
+  { id: "trimbak", latitude: 19.9322, longitude: 73.5302, title: "Trimbakeshwar Temple Sector", severity: "MEDIUM" as const },
+  { id: "kushavarta", latitude: 19.9335, longitude: 73.5290, title: "Kushavarta Kund Trimbakeshwar", severity: "LOW" as const },
 ];
 
 const MEDICAL_POINTS = [
-  { id: "mc01", latitude: 20.0075, longitude: 73.7888, title: "MC-01 Civil Hospital", severity: "MEDIUM" as const },
-  { id: "mc02", latitude: 20.0042, longitude: 73.7920, title: "MC-02 Ramkund Camp", severity: "HIGH" as const },
-  { id: "mc03", latitude: 19.9970, longitude: 73.7915, title: "MC-03 Godavari Camp", severity: "MEDIUM" as const },
-  { id: "mc04", latitude: 20.0090, longitude: 73.7860, title: "MC-04 Panchavati Aid", severity: "LOW" as const },
+  { id: "mc01", latitude: 20.0020, longitude: 73.7785, title: "Civil Hospital Nashik (Trauma Center)", severity: "LOW" as const },
+  { id: "mc02", latitude: 20.0060, longitude: 73.7930, title: "MC-02 Ramkund Emergency Camp", severity: "HIGH" as const },
+  { id: "mc03", latitude: 20.0082, longitude: 73.7950, title: "MC-03 Panchavati Aid Station", severity: "MEDIUM" as const },
+  { id: "mc04", latitude: 20.0015, longitude: 73.8050, title: "MC-04 Tapovan Field Hospital", severity: "LOW" as const },
 ];
 
 const AMBULANCE_POINTS = [
-  { id: "amb01", latitude: 20.0050, longitude: 73.7870, title: "AMB-01 — Available", severity: "LOW" as const },
-  { id: "amb08", latitude: 20.0035, longitude: 73.7930, title: "AMB-08 — En Route", severity: "HIGH" as const },
-  { id: "amb12", latitude: 20.0080, longitude: 73.7850, title: "AMB-12 — Available", severity: "LOW" as const },
+  { id: "amb08", latitude: 20.0035, longitude: 73.7820, title: "AMB-08 — Moving on Shortest Route", severity: "CRITICAL" as const },
+  { id: "amb01", latitude: 20.0020, longitude: 73.7785, title: "AMB-01 — Civil Hospital Standby", severity: "LOW" as const },
+  { id: "amb12", latitude: 20.0080, longitude: 73.7940, title: "AMB-12 — Panchavati Corridor", severity: "MEDIUM" as const },
 ];
 
 export default function LiveMapPage() {

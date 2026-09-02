@@ -52,15 +52,14 @@ const satelliteStyle: any = {
   ]
 };
 
-// Default emergency route in Nashik Kumbh area (Ambulance AMB-08 to Ramkund Site)
+// Default emergency route in Nashik Kumbh area based on Google Maps GPS (Civil Hospital to Ramkund Ghat)
 const DEFAULT_ROUTE: [number, number][] = [
-  [20.0150, 73.7810],
-  [20.0132, 73.7832],
-  [20.0115, 73.7850],
-  [20.0098, 73.7868],
-  [20.0082, 73.7885],
-  [20.0070, 73.7894],
-  [20.0059, 73.7903], // Ramkund Emergency Site
+  [20.0020, 73.7785], // Civil Hospital Nashik (Google Maps Reference)
+  [20.0035, 73.7820], // CBS Signal / Trimbak Road Junction
+  [20.0048, 73.7860], // Ashok Stambh / Panchavati Bridge Approach
+  [20.0055, 73.7890], // Godavari River Bridge Corridor
+  [20.0062, 73.7915], // Malviya Chowk Panchavati
+  [20.0063, 73.7925], // Ramkund Holy Snan Ghat (Google Maps Reference)
 ];
 
 // Route Glow & Core Layers
