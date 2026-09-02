@@ -549,7 +549,7 @@ It is a vision for a safer, smarter, and more connected Kumbh—where Artificial
 
 JEEVAN AI Proprietary License
 
-Copyright © 2026 Abhay Sachin Donde
+Copyright © 2026 Vedant Santosh Kokane
 
 All Rights Reserved.
 
