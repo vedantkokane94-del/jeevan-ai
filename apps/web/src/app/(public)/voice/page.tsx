@@ -341,25 +341,36 @@ export default function VoiceAssistant() {
               </button>
             </div>
 
-            {/* Quick Multi-Lingual Presets */}
+            {/* Quick Multi-Lingual Presets & Try Saying Section */}
             {phase === "idle" && (
-              <div className="z-10 w-full space-y-3 my-4">
-                <p className="text-[10px] text-ink-400 uppercase tracking-widest font-mono text-center font-bold">
-                  Quick Multi-Lingual Emergency Presets:
-                </p>
-                <div className="flex flex-wrap gap-2 justify-center">
+              <div className="z-10 w-full space-y-3 my-3 animate-fade-in-up">
+                <div className="flex items-center justify-between px-1">
+                  <p className="text-[10px] text-primary-400 uppercase tracking-widest font-mono font-bold flex items-center gap-1.5">
+                    <Info className="w-3.5 h-3.5 text-primary-400" />
+                    Try Saying or Tap Quick Presets:
+                  </p>
+                  <span className="text-[9px] text-ink-400 font-mono">10 Multi-Lingual Options</span>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2 max-h-[180px] overflow-y-auto pr-1 custom-scrollbar">
                   {[
-                    { label: "मदत करा! (Help!)", text: "मदत करा! रुग्णवाहिका पाठवा!" },
-                    { label: "छातीत दुखतंय (Chest Pain)", text: "छातीत प्रचंड दुखत आहे, ताबडतोब रुग्णवाहिका हवी!" },
-                    { label: "Emergency Ambulance", text: "Medical Emergency! Need an ambulance immediately at Ramkund!" },
-                    { label: "अपघात झाला आहे (Accident)", text: "येथे मोठा अपघात झाला आहे, वैद्यकीय मदत पाठवा!" }
+                    { label: "🚨 मदत करा! (Help!)", text: "मदत करा! रुग्णवाहिका पाठवा!" },
+                    { label: "💔 छातीत दुखतंय (Chest Pain)", text: "छातीत प्रचंड दुखत आहे, ताबडतोब रुग्णवाहिका हवी!" },
+                    { label: "🚑 Urgent Ambulance", text: "Medical Emergency! Need an ambulance immediately at Ramkund Ghat!" },
+                    { label: "🚗 अपघात झाला आहे (Accident)", text: "येथे मोठा अपघात झाला आहे, वैद्यकीय मदत पाठवा!" },
+                    { label: "🆘 बचाओ! मदद चाहिए! (Hindi SOS)", text: "बचाओ! रामकुंड पर भारी भीड़ में कोई बेहोश हो गया है!" },
+                    { label: "👴 बाबा खाली पडले (Fainted)", text: "माझे बाबा गर्दीत खाली पडले आहेत आणि शुद्ध हरपली आहे!" },
+                    { label: "🔥 अग्निशामक मदत (Fire)", text: "घाट परिसरात आग लागली आहे, अग्निशामक दल पाठवा!" },
+                    { label: "🛟 ગુજરાતી કટોકટી (Gujarati)", text: "કટોકટી મદદ! રામકુંડ પર તાત્કાલિક એમ્બ્યુલન્સ મોકલો!" },
+                    { label: "👦 मुलगा हरवला (Lost Child)", text: "माझा ५ वर्षांचा मुलगा गर्दीत हरवला आहे, पोलीस मदत हवी!" },
+                    { label: "🛡️ महिला सुरक्षा (Women Safety)", text: "महिला सुरक्षितता आणीबाणी! तातडीने सुरक्षा पथक पाठवा!" }
                   ].map((chip) => (
                     <button
                       key={chip.label}
                       onClick={() => processUniversalEmergency(chip.text)}
-                      className="px-3 py-1.5 rounded-xl bg-ink-900 border border-ink-800 hover:border-primary-500 text-xs font-semibold text-ink-200 hover:text-white transition-all shadow-sm active:scale-95"
+                      className="px-3 py-2 rounded-xl bg-ink-900 border border-ink-800 hover:border-primary-500 text-xs font-semibold text-ink-200 hover:text-white transition-all shadow-sm active:scale-95 text-left truncate flex items-center gap-1.5"
                     >
-                      {chip.label}
+                      <span className="truncate">{chip.label}</span>
                     </button>
                   ))}
                 </div>
