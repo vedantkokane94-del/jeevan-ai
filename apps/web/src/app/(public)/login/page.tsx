@@ -118,7 +118,7 @@ export default function LoginPage() {
         </div>
 
         <p className="text-xs text-ink-300 text-center md:text-left">
-          &copy; 2027 JEEVAN AI Platform.
+          &copy; 2026 JEEVAN AI Platform. Co-Founded by Vedant Kokane &amp; Abhay Sachin Donde.
         </p>
       </div>
 

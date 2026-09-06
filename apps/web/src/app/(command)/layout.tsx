@@ -47,17 +47,22 @@ export default function CommandLayout({ children }: { children: React.ReactNode 
           })}
         </nav>
 
-        <div className="p-4 border-t border-surface-border flex items-center justify-center lg:justify-between">
-          <div className="hidden lg:flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-ink-800 flex items-center justify-center text-xs font-bold text-ink-300">OP</div>
-            <div>
-              <p className="text-xs text-ink-200 font-medium line-clamp-1">{user?.full_name || "Operator"}</p>
-              <p className="text-[10px] text-ink-500 font-mono">SYS_ADMIN</p>
+        <div className="p-4 border-t border-surface-border flex flex-col gap-2">
+          <div className="flex items-center justify-between">
+            <div className="hidden lg:flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-ink-800 flex items-center justify-center text-xs font-bold text-ink-300">OP</div>
+              <div>
+                <p className="text-xs text-ink-200 font-medium line-clamp-1">{user?.full_name || "Operator"}</p>
+                <p className="text-[10px] text-ink-500 font-mono">SYS_ADMIN</p>
+              </div>
             </div>
+            <button onClick={() => logout()} className="text-ink-500 hover:text-alert-400 transition-colors" title="Logout">
+              <LogOut className="w-5 h-5" />
+            </button>
           </div>
-          <button onClick={() => logout()} className="text-ink-500 hover:text-alert-400 transition-colors" title="Logout">
-            <LogOut className="w-5 h-5" />
-          </button>
+          <div className="hidden lg:block text-[9px] text-ink-500 font-medium text-center border-t border-surface-border/40 pt-2">
+            Founders: Vedant Kokane &amp; Abhay Sachin Donde
+          </div>
         </div>
       </aside>
 
