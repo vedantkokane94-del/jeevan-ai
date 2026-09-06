@@ -1,0 +1,52 @@
+# ==========================================
+# JEEVAN AI — Voice Agent Microservice Dependencies
+# ==========================================
+
+# --- Core Framework ---
+fastapi==0.115.12
+uvicorn[standard]==0.34.2
+pydantic==2.11.3
+pydantic-settings==2.9.1
+
+# --- Speech-to-Text (Whisper) ---
+openai-whisper==20231117
+torch>=2.0.0
+numpy>=1.24.0
+
+# --- AI Brain (Google Gemini) ---
+google-generativeai>=0.8.0
+
+# --- Text-to-Speech (ElevenLabs) ---
+elevenlabs>=1.0.0
+
+# --- Audio Processing ---
+soundfile>=0.12.1
+scipy>=1.11.0
+
+# --- Database ---
+sqlalchemy[asyncio]==2.0.41
+asyncpg==0.30.0
+
+# --- Redis (Pub/Sub) ---
+redis[hiredis]==5.3.0
+
+# --- Security & Encryption ---
+cryptography>=41.0.0
+python-jose[cryptography]==3.4.0
+
+# --- HTTP Client (for incident API calls) ---
+httpx==0.28.1
+
+# --- WebSocket Audio ---
+websockets>=12.0
+
+# --- Fuzzy Matching (Landmark names) ---
+rapidfuzz>=3.5.0
+
+# --- Telephony (Twilio PSTN) ---
+twilio==9.0.0
+pydub==0.25.1
+
+# --- Testing ---
+pytest==8.3.5
+pytest-asyncio==0.25.3

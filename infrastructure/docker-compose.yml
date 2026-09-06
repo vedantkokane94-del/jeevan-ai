@@ -1,0 +1,81 @@
+# =============================================================================
+# JEEVAN AI — Local Development Infrastructure
+# =============================================================================
+# PostgreSQL + PostGIS (SRS §13.2) and Redis (SRS §13.3)
+#
+# Usage:
+#   docker compose -f infrastructure/docker-compose.yml up -d
+#   docker compose -f infrastructure/docker-compose.yml down
+# =============================================================================
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: jeevan-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: jeevan_ai
+      POSTGRES_USER: jeevan
+      POSTGRES_PASSWORD: jeevan_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - jeevan_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jeevan -d jeevan_ai"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  redis:
+    image: redis:7-alpine
+    container_name: jeevan-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - jeevan_redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ../services/api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/jeevan_ai
+      - REDIS_URL=redis://redis:6379/0
+      - JWT_SECRET=development_secret_key_change_in_prod
+      - ENVIRONMENT=development
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - ../services/api:/code
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ..
+      dockerfile: ./apps/web/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+      - NEXT_PUBLIC_WS_URL=ws://localhost:8000/api/v1
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  jeevan_pgdata:
+    driver: local
+  jeevan_redis:
+    driver: local

@@ -1,0 +1,13 @@
+name = "edge-voice"
+main = "src/index.ts"
+compatibility_date = "2024-09-09"
+compatibility_flags = ["nodejs_compat"]
+
+[ai]
+binding = "AI"
+
+[vars]
+# Add these via `wrangler secret put <name>` in production
+# SARVAM_API_KEY = "your-sarvam-key"
+# SUPABASE_URL = "your-supabase-url"
+# SUPABASE_SERVICE_ROLE_KEY = "your-supabase-key"
