@@ -7,7 +7,7 @@ import {
   ShieldAlert, Phone, ChevronRight,
   MapPin, Clock, Shield, Activity, Thermometer,
   AlertTriangle, Wifi, WifiOff, Navigation,
-  Radio, Heart, Search as SearchIcon, Map as MapIcon
+  Radio, Heart, Search as SearchIcon, Map as MapIcon, Stethoscope
 } from "lucide-react";
 
 /* ─── Simulated Live Data ─── */
@@ -56,6 +56,7 @@ function useSimulatedLiveData(): LiveStatus {
 
 /* ─── Service Cards Data ─── */
 const services = [
+  { href: "/symptom-checker", icon: Stethoscope, title: "Symptom AI", desc: "AI Triage & Advice", color: "bg-teal-600" },
   { href: "/hospitals", icon: Hospital, title: "Hospital Finder", desc: "AI-recommended", color: "bg-primary-600" },
   { href: "/voice", icon: Mic, title: "Voice SOS", desc: "Hindi, Marathi, English", color: "bg-accent-600" },
   { href: "/first-aid", icon: HeartPulse, title: "First Aid", desc: "Help until help arrives", color: "bg-success-600" },

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Shield, HeartPulse, Activity, Search, Volume2, Droplets, ThermometerSun, AlertCircle, Phone, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Shield, HeartPulse, Activity, Search, Volume2, Droplets, ThermometerSun, AlertCircle, Phone, CheckCircle2, Stethoscope, Sparkles } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface FirstAidStep {
@@ -151,6 +151,25 @@ export default function FirstAidPage() {
               exit={{ opacity: 0, x: -20 }}
               className="space-y-4"
             >
+              {/* AI Symptom Checker Banner */}
+              <Link 
+                href="/symptom-checker"
+                className="card-elevated p-4 flex items-center justify-between bg-gradient-to-r from-primary-600 to-teal-700 text-white group hover:shadow-lg transition-all"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
+                    <Sparkles className="w-5 h-5 text-white animate-pulse" />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-bold text-sm flex items-center gap-1.5">
+                      AI Symptom Checker &amp; Triage
+                    </h3>
+                    <p className="text-xs text-primary-100">Evaluate symptoms, calculate risk &amp; get voice aid</p>
+                  </div>
+                </div>
+                <ArrowRight className="w-5 h-5 text-white/80 group-hover:translate-x-1 transition-transform" />
+              </Link>
+
               {/* Search */}
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-400" />
