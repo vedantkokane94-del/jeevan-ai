@@ -5,7 +5,8 @@
 
 AI-powered Public Health & Emergency Response Platform built specifically for **Nashik–Trimbakeshwar Simhastha Kumbh Mela 2027**.
 
-**Founders**: Vedant Kokane & Abhay Sachin Donde
+**Founders**: Vedant Kokane & Abhay Sachin Donde  
+**Live Demo (Vercel)**: [https://jeevan-ai.vercel.app](https://jeevan-ai.vercel.app)
 
 ---
 <img width="868" height="665" alt="logo png (2)" src="https://github.com/user-attachments/assets/f5e00bdc-bf70-4106-a2ec-d85ea3215e2b" />
