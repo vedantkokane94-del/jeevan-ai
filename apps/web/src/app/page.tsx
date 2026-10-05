@@ -135,7 +135,7 @@ function Footer() {
               </div>
               <div className="text-xs text-ink-400 leading-relaxed max-w-lg space-y-2">
                 <p><strong className="text-ink-300">Website Terms Notice:</strong> All content, designs, source code, graphics, documentation, and branding used in JEEVAN AI are protected by applicable copyright laws.</p>
-                <p>The &quot;JEEVAN AI&quot; name, visual identity, and project materials are intended solely for this project and may not be reproduced or used for commercial purposes without permission from Founders Vedant Kokane and Abhay Sachin Donde.</p>
+                <p>The &quot;JEEVAN AI&quot; name, visual identity, and project materials are intended solely for this project and may not be reproduced or used for commercial purposes without permission from Founders Vedant Kokane and Abhay Donde.</p>
               </div>
             </div>
 
@@ -146,9 +146,9 @@ function Footer() {
                 WCAG 2.1 AA Compliant
               </div>
               <div className="text-left lg:text-right space-y-1.5">
-                <p className="text-sm text-ink-300 font-medium">Built with ❤️ in India by Vedant Kokane &amp; Abhay Sachin Donde</p>
-                <p className="text-xs text-ink-500">&copy; 2026 JEEVAN AI. Co-Founded, Designed &amp; Developed by Vedant Kokane and Abhay Sachin Donde.</p>
-                <p className="text-xs text-ink-500">Copyright &copy; 2026 Vedant Kokane &amp; Abhay Sachin Donde. All Rights Reserved.</p>
+                <p className="text-sm text-ink-300 font-medium">Built with ❤️ in India by Vedant Kokane &amp; Abhay Donde</p>
+                <p className="text-xs text-ink-500">&copy; 2026 JEEVAN AI. Designed and Developed by Vedant Kokane &amp; Abhay Donde.</p>
+                <p className="text-xs text-ink-500">Copyright &copy; 2026 Vedant Kokane &amp; Abhay Donde. All Rights Reserved.</p>
               </div>
             </div>
           </div>
